@@ -33,6 +33,27 @@ export const STRINGS = {
       '💧 Drinking water',
     ],
   },
+  helmTitle: { ru: 'За штурвалом', en: 'Take the Helm' },
+  helmText: {
+    ru: 'Можно не просто любоваться морем, а встать за штурвал самому. Капитан покажет, как держать курс и управлять парусом, — почувствуешь настоящий яхтинг. Опыт не нужен, всё объясним с нуля.',
+    en: "Don't just watch the sea — take the wheel yourself. Your captain shows you how to hold a course and work the sail, so you feel real sailing. No experience needed, we start from scratch.",
+  },
+  helmList: {
+    ru: [
+      '🧭 Держать курс и читать море',
+      '⛵ Ставить и настраивать парус',
+      '🦺 Безопасно — капитан рядом',
+    ],
+    en: [
+      '🧭 Hold a course and read the sea',
+      '⛵ Raise and trim the sail',
+      '🦺 Safe — your captain is right there',
+    ],
+  },
+  helmNote: {
+    ru: 'Уже входит в прогулку — просто скажи, что хочешь порулить.',
+    en: 'Already included in the trip — just say you would like to steer.',
+  },
   faqTitle: { ru: 'Частые вопросы', en: 'FAQ' },
   faq: {
     ru: [

@@ -125,6 +125,19 @@ export default function App() {
           </section>
 
           <section className="section">
+            <h2>{t('helmTitle')}</h2>
+            <div className="helm-card">
+              <p>{t('helmText')}</p>
+              <ul className="helm-list">
+                {tr(STRINGS.helmList).map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <div className="helm-note">{t('helmNote')}</div>
+            </div>
+          </section>
+
+          <section className="section">
             <h2>{t('included')}</h2>
             <ul className="included-list">
               {tr(STRINGS.includedList).map((item) => (

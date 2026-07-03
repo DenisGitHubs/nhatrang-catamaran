@@ -157,6 +157,27 @@ body {
   font-size: 15px;
 }
 
+/* ===== За штурвалом ===== */
+.helm-card {
+  margin-top: 12px;
+  background: linear-gradient(135deg, var(--ocean) 0%, var(--deep) 100%);
+  color: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px 20px 22px;
+}
+.helm-card p { font-size: 15px; line-height: 1.5; }
+.helm-list { list-style: none; margin-top: 14px; display: grid; gap: 8px; }
+.helm-list li { font-size: 14px; }
+.helm-note {
+  margin-top: 16px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 11px 13px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
 /* ===== Галерея ===== */
 .gallery-grid { margin-top: 4px; }
 .gallery-item {
