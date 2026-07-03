@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Катамаран">
+  <rect width="64" height="64" rx="14" fill="#0b2d4f"/>
+  <path d="M32 11 Q17 34 29.5 47 L32 47 Z" fill="#ffffff"/>
+  <path d="M35.5 19 Q45 33 37 45 L35.5 45 Z" fill="#7fd3e6"/>
+  <path d="M13 48 H51 L44.5 55 H19.5 Z" fill="#ffffff"/>
+</svg>

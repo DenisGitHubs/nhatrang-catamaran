@@ -52,8 +52,6 @@ export const GALLERY = [
 export const ROUTES = [
   {
     id: 'islands',
-    emoji: '🏝️',
-    gradient: 'linear-gradient(135deg, #00b4d8 0%, #0077b6 100%)',
     title: { ru: 'Острова залива', en: 'Bay Islands' },
     desc: {
       ru: 'Идём под парусом к островам Нячангского залива: Хон-Мун, Хон-Там. Прозрачная вода, снорклинг и виды, ради которых сюда едут.',
@@ -66,8 +64,6 @@ export const ROUTES = [
   },
   {
     id: 'sunset',
-    emoji: '🌅',
-    gradient: 'linear-gradient(135deg, #ff9e00 0%, #ff5400 60%, #7b2cbf 100%)',
     title: { ru: 'Закатная прогулка', en: 'Sunset Cruise' },
     desc: {
       ru: 'Выходим ближе к вечеру и встречаем закат прямо в море. Тихий ход под парусом, город зажигает огни — самый романтичный маршрут.',
@@ -80,8 +76,6 @@ export const ROUTES = [
   },
   {
     id: 'freeride',
-    emoji: '⛵',
-    gradient: 'linear-gradient(135deg, #06d6a0 0%, #118ab2 100%)',
     title: { ru: 'Свободный маршрут', en: 'Your Own Route' },
     desc: {
       ru: 'Лодка ваша на 4 часа — сами решаете, куда идти. Хотите больше купания, рыбалку или просто дрейфовать под парусом? Обсудим на месте.',

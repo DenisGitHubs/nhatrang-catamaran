@@ -48,7 +48,6 @@ export const STRINGS = {
       ['How do I pay?', 'Cash in VND or bank transfer. Details when you book.'],
     ],
   },
-  bookNow: { ru: 'Забронировать в Telegram', en: 'Book via Telegram' },
   bookShort: { ru: 'Бронь', en: 'Book' },
   bookHint: {
     ru: 'Напишите Денису — ответит быстро и поможет выбрать время',

@@ -1,3 +1,12 @@
 node_modules
 dist
 .DS_Store
+
+# Инструменты Claude Code и внутренние заметки — не публикуем
+.claude/
+CLAUDE.md
+
+# Мусор сборки / окружения
+vite.config.js.timestamp-*.mjs
+.vercel
+Thumbs.db

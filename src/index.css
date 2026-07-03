@@ -1,19 +1,24 @@
 :root {
-  --red: #e63946;
-  --red-deep: #c1121f;
-  --red-soft: #ff6b5e;
-  --ocean-deep: #101c2c;
-  --ocean: #0077b6;
-  --foam: #fdecea;
-  --ink: #1b2a3a;
-  --ink-soft: #5a6b7d;
+  --deep: #0b2d4f;          /* глубокий морской синий */
+  --ocean: #0c6e9e;         /* океанский */
+  --teal: #0e9aa9;          /* бирюза */
+  --teal-deep: #0b7c89;
+  --aqua-tint: #dff3f6;     /* светлая бирюзовая подложка */
+  --sand: #f7ead2;          /* песок */
+  --coral: #ff7a52;         /* коралловый CTA */
+  --coral-deep: #ef5433;
+  --ink: #12303f;
+  --ink-soft: #52707e;
   --card-bg: #ffffff;
-  --page-bg: #f6f7f9;
+  --page-bg: #eef6f8;
   --radius: 16px;
-  --shadow: 0 4px 20px rgba(16, 28, 44, 0.1);
+  --shadow: 0 4px 20px rgba(11, 45, 79, 0.1);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Видимый фокус для навигации с клавиатуры (десктоп) */
+:focus-visible { outline: 2px solid var(--teal-deep); outline-offset: 2px; border-radius: 8px; }
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -39,7 +44,16 @@ body {
 .hero-compact { height: 190px; }
 .hero-shade {
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(16,28,44,0.35) 0%, rgba(16,28,44,0) 35%, rgba(16,28,44,0.72) 100%);
+  background: linear-gradient(180deg, rgba(11,45,79,0.4) 0%, rgba(11,45,79,0) 35%, rgba(7,30,54,0.75) 100%);
+}
+/* волна по нижней кромке hero */
+.hero::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 22px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 22' preserveAspectRatio='none'%3E%3Cpath d='M0 22 L0 12 Q30 2 60 12 T120 12 T180 12 T240 12 T300 12 T360 12 T420 12 T480 12 L480 22 Z' fill='%23eef6f8'/%3E%3C/svg%3E") repeat-x bottom / 480px 22px;
+  pointer-events: none;
 }
 .hero-top { position: relative; display: flex; justify-content: flex-end; padding: 14px 16px; }
 .lang-switch {
@@ -54,10 +68,10 @@ body {
   cursor: pointer;
   backdrop-filter: blur(6px);
 }
-.hero-text { position: relative; padding: 0 20px 30px; }
-.hero-compact .hero-text { padding-bottom: 18px; }
-.hero-text h1 { font-size: 28px; line-height: 1.15; text-shadow: 0 2px 12px rgba(0,0,0,0.45); }
-.hero-text p { margin-top: 6px; font-size: 15px; opacity: 0.95; max-width: 340px; text-shadow: 0 1px 8px rgba(0,0,0,0.5); }
+.hero-text { position: relative; padding: 0 20px 34px; }
+.hero-compact .hero-text { padding-bottom: 24px; }
+.hero-text h1 { font-size: 28px; line-height: 1.15; text-shadow: 0 2px 12px rgba(4, 22, 42, 0.5); }
+.hero-text p { margin-top: 6px; font-size: 15px; opacity: 0.95; max-width: 340px; text-shadow: 0 1px 8px rgba(4, 22, 42, 0.55); }
 
 /* ===== Цена ===== */
 .price-card {
@@ -68,13 +82,14 @@ body {
   position: relative;
   padding: 20px;
   text-align: center;
+  border-top: 3px solid var(--teal);
 }
-.price-value { font-size: 34px; font-weight: 800; color: var(--red-deep); }
+.price-value { font-size: 34px; font-weight: 800; color: var(--deep); }
 .price-note { color: var(--ink-soft); font-size: 14px; margin-top: 2px; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
 .chip {
-  background: var(--foam);
-  color: var(--red-deep);
+  background: var(--aqua-tint);
+  color: var(--teal-deep);
   border-radius: 999px;
   padding: 6px 12px;
   font-size: 13px;
@@ -84,13 +99,27 @@ body {
 /* ===== Секции ===== */
 .section { padding: 28px 16px 0; }
 .section.page { padding-top: 20px; }
-.section h2 { font-size: 22px; color: var(--ocean-deep); }
+.section h2 {
+  font-size: 22px;
+  color: var(--deep);
+  display: inline-block;
+  position: relative;
+  padding-bottom: 8px;
+}
+/* волнистое подчёркивание заголовков */
+.section h2::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 56px; height: 6px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 6'%3E%3Cpath d='M1 4 Q8 0 15 4 T29 4 T43 4 T57 4' stroke='%230e9aa9' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;
+}
 .section .sub { color: var(--ink-soft); font-size: 14px; margin-top: 4px; }
 .page-head { display: flex; justify-content: space-between; align-items: center; }
 .page-head .lang-switch {
-  background: var(--foam);
+  background: var(--aqua-tint);
   border: none;
-  color: var(--red-deep);
+  color: var(--teal-deep);
 }
 
 /* ===== Маршруты ===== */
@@ -102,16 +131,16 @@ body {
   overflow: hidden;
   margin-top: 16px;
 }
-.route-cover { height: 130px; line-height: 0; }
+.route-cover { height: 140px; line-height: 0; }
 .route-cover svg { display: block; }
 .route-body { padding: 16px; }
-.route-body h3 { font-size: 18px; }
+.route-body h3 { font-size: 18px; color: var(--deep); }
 .route-body p { color: var(--ink-soft); font-size: 14px; margin-top: 6px; line-height: 1.45; }
 .route-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
 .route-tag {
   font-size: 12px; font-weight: 600;
-  color: var(--red-deep);
-  background: var(--foam);
+  color: var(--teal-deep);
+  background: var(--aqua-tint);
   border-radius: 999px;
   padding: 4px 10px;
 }
@@ -122,6 +151,7 @@ body {
   background: var(--card-bg);
   border-radius: 12px;
   box-shadow: var(--shadow);
+  border-left: 3px solid var(--teal);
   padding: 12px 14px;
   margin-top: 8px;
   font-size: 15px;
@@ -157,7 +187,7 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-.faq-item summary::after { content: '+'; color: var(--red); font-size: 20px; }
+.faq-item summary::after { content: '+'; color: var(--teal); font-size: 20px; }
 .faq-item[open] summary::after { content: '–'; }
 .faq-item p { padding: 0 14px 14px; color: var(--ink-soft); font-size: 14px; line-height: 1.45; }
 
@@ -168,7 +198,7 @@ body {
   width: 100%;
   margin-top: 12px;
   background: var(--card-bg);
-  border: 1px solid #eadfdd;
+  border: 1px solid #d8e8ec;
   border-radius: 14px;
   padding: 15px;
   text-align: center;
@@ -178,11 +208,11 @@ body {
   font-size: 15px;
   cursor: pointer;
 }
-.contact-big.cta-red {
-  background: linear-gradient(135deg, var(--red-soft) 0%, var(--red-deep) 100%);
+.contact-big.cta-main {
+  background: linear-gradient(135deg, var(--coral) 0%, var(--coral-deep) 100%);
   color: #fff;
   border: none;
-  box-shadow: 0 6px 18px rgba(230, 57, 70, 0.35);
+  box-shadow: 0 6px 18px rgba(239, 84, 51, 0.35);
 }
 .contact-handle { text-align: center; color: var(--ink-soft); font-size: 13px; margin-top: 12px; }
 .cta-hint { text-align: center; font-size: 12px; color: var(--ink-soft); margin-top: 6px; }
@@ -197,10 +227,10 @@ body {
   align-items: flex-end;
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(10px);
-  border-top: 1px solid #e8e2e1;
+  border-top: 1px solid #dce9ee;
   border-radius: 18px 18px 0 0;
   padding: 8px 6px calc(8px + env(safe-area-inset-bottom));
-  box-shadow: 0 -6px 24px rgba(16, 28, 44, 0.12);
+  box-shadow: 0 -6px 24px rgba(11, 45, 79, 0.12);
 }
 .tab {
   flex: 1;
@@ -217,7 +247,7 @@ body {
 }
 .tab-icon { line-height: 0; }
 .tab-label { font-size: 11px; font-weight: 600; }
-.tab.active { color: var(--red-deep); background: var(--foam); }
+.tab.active { color: var(--teal-deep); background: var(--aqua-tint); }
 
 .tab-book {
   flex: 1.15;
@@ -234,15 +264,15 @@ body {
 .tab-book-btn {
   width: 56px; height: 56px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--red-soft) 0%, var(--red-deep) 100%);
-  box-shadow: 0 8px 20px rgba(230, 57, 70, 0.45);
+  background: linear-gradient(135deg, var(--coral) 0%, var(--coral-deep) 100%);
+  box-shadow: 0 8px 20px rgba(239, 84, 51, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
   border: 3px solid #fff;
   line-height: 0;
 }
-.tab-book-label { font-size: 11px; font-weight: 700; color: var(--red-deep); }
+.tab-book-label { font-size: 11px; font-weight: 700; color: var(--coral-deep); }
 
 /* ===== Планшет и десктоп ===== */
 @media (min-width: 700px) {
@@ -250,9 +280,10 @@ body {
 
   .hero { height: 380px; border-radius: 0 0 24px 24px; background-position: center 58%; }
   .hero-compact { height: 220px; }
-  .hero-text { padding: 0 32px 40px; }
+  .hero-text { padding: 0 32px 44px; }
   .hero-text h1 { font-size: 38px; }
   .hero-text p { font-size: 17px; max-width: 460px; }
+  .hero::after { border-radius: 0 0 24px 24px; }
 
   .price-card {
     margin: -20px auto 0;
