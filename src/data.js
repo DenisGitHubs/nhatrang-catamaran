@@ -23,6 +23,22 @@ export const GALLERY = [
     src: '/photos/catamaran.jpg',
     caption: { ru: 'Наш катамаран в заливе Нячанга', en: 'Our catamaran in Nha Trang Bay' },
   },
+  {
+    src: '/photos/beach-city.jpg',
+    caption: { ru: 'Старт с городского пляжа Нячанга', en: 'Setting off from Nha Trang city beach' },
+  },
+  {
+    src: '/photos/beach-captain.jpg',
+    caption: { ru: 'Капитан ждёт вас на берегу', en: 'Your captain waiting on the shore' },
+  },
+  {
+    src: '/photos/beach-bay.jpg',
+    caption: { ru: 'Готовы к выходу — море и острова впереди', en: 'Ready to sail — the bay and islands ahead' },
+  },
+  {
+    src: '/photos/guests.jpg',
+    caption: { ru: 'Наши гости — жилеты для всех на борту', en: 'Our guests — life jackets for everyone aboard' },
+  },
 ];
 
 export const ROUTES = [
