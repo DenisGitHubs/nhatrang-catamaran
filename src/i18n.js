@@ -82,6 +82,16 @@ export const STRINGS = {
   call: { ru: 'Позвонить', en: 'Call' },
   write: { ru: 'Написать на почту', en: 'Email us' },
   writeTg: { ru: 'Написать в Telegram', en: 'Message on Telegram' },
+  qrTitle: { ru: 'Приложение под рукой', en: 'Keep the app handy' },
+  qrHint: {
+    ru: 'Наведите камеру телефона — откроется приложение',
+    en: 'Point your phone camera to open the app',
+  },
+  shareBtn: { ru: 'Поделиться в Telegram', en: 'Share on Telegram' },
+  shareText: {
+    ru: 'Морская прогулка на катамаране в Нячанге ⛵',
+    en: 'Private catamaran cruise in Nha Trang ⛵',
+  },
   galleryTitle: { ru: 'Фотогалерея', en: 'Photo Gallery' },
   gallerySubtitle: {
     ru: 'Наш катамаран вживую — таким вы его и увидите',

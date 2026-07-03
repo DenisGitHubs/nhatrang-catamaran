@@ -8,6 +8,10 @@ export const CONTACTS = {
   telegramHandle: '@DenisSokurenko',
 };
 
+// Ссылка, которую кодирует QR и которой делятся в Telegram.
+// Когда создашь мини-апп в BotFather — замени на ссылку вида https://t.me/твой_бот/app
+export const APP_LINK = 'https://t.me/DenisSokurenko';
+
 export const PRICING = {
   priceVND: 2000000,
   priceLabel: { ru: '2 000 000 ₫', en: '2,000,000 ₫' },

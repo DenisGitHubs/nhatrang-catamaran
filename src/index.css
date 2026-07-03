@@ -238,6 +238,27 @@ body {
 .contact-handle { text-align: center; color: var(--ink-soft); font-size: 13px; margin-top: 12px; }
 .cta-hint { text-align: center; font-size: 12px; color: var(--ink-soft); margin-top: 6px; }
 
+/* ===== QR + Поделиться ===== */
+.qr-block { margin-top: 22px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.qr-title { font-size: 15px; font-weight: 700; color: var(--deep); }
+.qr-frame {
+  margin-top: 12px;
+  background: #fff;
+  padding: 14px;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  line-height: 0;
+}
+.qr-frame svg { display: block; width: 168px; height: 168px; }
+.qr-hint { margin-top: 10px; font-size: 13px; color: var(--ink-soft); max-width: 260px; }
+.share-btn {
+  margin-top: 14px;
+  background: var(--aqua-tint);
+  border: none;
+  color: var(--teal-deep);
+  font-weight: 700;
+}
+
 /* ===== Футер-навигация ===== */
 .tabbar {
   position: fixed;

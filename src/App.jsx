@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { CONTACTS, PRICING, ROUTES, GALLERY, HERO_PHOTO } from './data.js';
+import { QRCodeSVG } from 'qrcode.react';
+import { CONTACTS, PRICING, ROUTES, GALLERY, HERO_PHOTO, APP_LINK } from './data.js';
 import { STRINGS, detectLang } from './i18n.js';
 import { ROUTE_COVERS, HomeIcon, PhotoIcon, FaqIcon, PhoneIcon, SailIcon } from './icons.jsx';
 
@@ -54,6 +55,12 @@ export default function App() {
   const openTelegram = () => {
     if (tg?.openTelegramLink) tg.openTelegramLink(CONTACTS.telegram);
     else window.open(CONTACTS.telegram, '_blank');
+  };
+
+  const shareApp = () => {
+    const url = `https://t.me/share/url?url=${encodeURIComponent(APP_LINK)}&text=${encodeURIComponent(t('shareText'))}`;
+    if (tg?.openTelegramLink) tg.openTelegramLink(url);
+    else window.open(url, '_blank');
   };
 
   const langSwitch = (
@@ -190,6 +197,17 @@ export default function App() {
           </div>
           <p className="contact-handle">Telegram: {CONTACTS.telegramHandle}</p>
           <p className="cta-hint">{t('bookHint')}</p>
+
+          <div className="qr-block">
+            <div className="qr-title">{t('qrTitle')}</div>
+            <div className="qr-frame">
+              <QRCodeSVG value={APP_LINK} size={168} bgColor="#ffffff" fgColor="#0b2d4f" level="M" />
+            </div>
+            <p className="qr-hint">{t('qrHint')}</p>
+          </div>
+          <button className="contact-big share-btn" onClick={shareApp}>
+            {t('shareBtn')}
+          </button>
         </section>
       )}
 
