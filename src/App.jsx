@@ -46,6 +46,11 @@ export default function App() {
     document.documentElement.lang = lang;
   }, [lang]);
 
+  // При открытии раздела прокручиваем к самому верху
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [tab]);
+
   const openTelegram = () => {
     if (tg?.openTelegramLink) tg.openTelegramLink(CONTACTS.telegram);
     else window.open(CONTACTS.telegram, '_blank');
