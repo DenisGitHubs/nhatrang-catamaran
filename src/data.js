@@ -8,9 +8,8 @@ export const CONTACTS = {
   telegramHandle: '@DenisSokurenko',
 };
 
-// Ссылка, которую кодирует QR и которой делятся в Telegram.
-// Когда создашь мини-апп в BotFather — замени на ссылку вида https://t.me/твой_бот/app
-export const APP_LINK = 'https://t.me/DenisSokurenko';
+// Ссылка на мини-апп (из BotFather) — её кодирует QR и ею делятся в Telegram.
+export const APP_LINK = 'https://t.me/NhaTrangCatamaranBot/app';
 
 export const PRICING = {
   priceVND: 2000000,
