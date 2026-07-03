@@ -15,6 +15,16 @@ export const PRICING = {
   maxGuests: 3, // + капитан
 };
 
+// Фото: кладите файлы в public/photos и добавляйте сюда
+export const HERO_PHOTO = '/photos/catamaran.jpg';
+
+export const GALLERY = [
+  {
+    src: '/photos/catamaran.jpg',
+    caption: { ru: 'Наш катамаран в заливе Нячанга', en: 'Our catamaran in Nha Trang Bay' },
+  },
+];
+
 export const ROUTES = [
   {
     id: 'islands',

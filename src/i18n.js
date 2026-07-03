@@ -49,13 +49,28 @@ export const STRINGS = {
     ],
   },
   bookNow: { ru: 'Забронировать в Telegram', en: 'Book via Telegram' },
+  bookShort: { ru: 'Бронь', en: 'Book' },
   bookHint: {
     ru: 'Напишите Денису — ответит быстро и поможет выбрать время',
     en: "Message Denis — he replies fast and will help you pick a time",
   },
   contactsTitle: { ru: 'Контакты', en: 'Contacts' },
+  contactsSubtitle: {
+    ru: 'Быстрее всего — написать в Telegram',
+    en: 'Telegram is the fastest way to reach us',
+  },
   call: { ru: 'Позвонить', en: 'Call' },
-  write: { ru: 'Написать', en: 'Email' },
+  write: { ru: 'Написать на почту', en: 'Email us' },
+  writeTg: { ru: 'Написать в Telegram', en: 'Message on Telegram' },
+  galleryTitle: { ru: 'Фотогалерея', en: 'Photo Gallery' },
+  gallerySubtitle: {
+    ru: 'Наш катамаран вживую — таким вы его и увидите',
+    en: 'Our catamaran as it is — exactly what you get',
+  },
+  tabHome: { ru: 'Главная', en: 'Home' },
+  tabGallery: { ru: 'Фото', en: 'Photos' },
+  tabFaq: { ru: 'Вопросы', en: 'FAQ' },
+  tabContacts: { ru: 'Контакты', en: 'Contacts' },
 };
 
 export function detectLang() {

@@ -1,17 +1,16 @@
 :root {
-  --ocean-deep: #023e7d;
+  --red: #e63946;
+  --red-deep: #c1121f;
+  --red-soft: #ff6b5e;
+  --ocean-deep: #101c2c;
   --ocean: #0077b6;
-  --ocean-light: #00b4d8;
-  --foam: #caf0f8;
-  --sand: #ffb703;
-  --cta: #ff6d00;
-  --cta-hover: #ff8500;
+  --foam: #fdecea;
   --ink: #1b2a3a;
   --ink-soft: #5a6b7d;
   --card-bg: #ffffff;
-  --page-bg: #f4f9fc;
+  --page-bg: #f6f7f9;
   --radius: 16px;
-  --shadow: 0 4px 20px rgba(2, 62, 125, 0.1);
+  --shadow: 0 4px 20px rgba(16, 28, 44, 0.1);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -23,64 +22,69 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.app { max-width: 480px; margin: 0 auto; padding-bottom: 96px; }
+.app { max-width: 480px; margin: 0 auto; padding-bottom: 108px; }
 
-/* ===== Hero ===== */
+/* ===== Hero: фото ===== */
 .hero {
   position: relative;
-  background: linear-gradient(160deg, var(--ocean-deep) 0%, var(--ocean) 55%, var(--ocean-light) 100%);
+  height: 300px;
+  background-size: cover;
+  background-position: center 62%;
   color: #fff;
-  padding: 20px 20px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   overflow: hidden;
 }
-.hero-top { display: flex; justify-content: flex-end; }
+.hero-shade {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(16,28,44,0.35) 0%, rgba(16,28,44,0) 35%, rgba(16,28,44,0.72) 100%);
+}
+.hero-top { position: relative; display: flex; justify-content: flex-end; padding: 14px 16px; }
 .lang-switch {
-  background: rgba(255, 255, 255, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   color: #fff;
   border-radius: 999px;
   padding: 6px 14px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(6px);
 }
-.hero-emoji { font-size: 56px; margin-top: 8px; }
-.hero h1 { font-size: 30px; line-height: 1.15; margin-top: 8px; }
-.hero p { margin-top: 8px; font-size: 16px; opacity: 0.9; max-width: 320px; }
-.hero-waves {
-  position: absolute; bottom: -1px; left: 0; right: 0;
-  display: block; width: 100%;
-}
+.hero-text { position: relative; padding: 0 20px 24px; }
+.hero-text h1 { font-size: 28px; line-height: 1.15; text-shadow: 0 2px 12px rgba(0,0,0,0.45); }
+.hero-text p { margin-top: 6px; font-size: 15px; opacity: 0.95; max-width: 320px; text-shadow: 0 1px 8px rgba(0,0,0,0.5); }
 
-/* ===== Price card ===== */
+/* ===== Цена ===== */
 .price-card {
   background: var(--card-bg);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  margin: -36px 16px 0;
+  margin: -30px 16px 0;
   position: relative;
   padding: 20px;
   text-align: center;
 }
-.price-value { font-size: 34px; font-weight: 800; color: var(--ocean-deep); }
+.price-value { font-size: 34px; font-weight: 800; color: var(--red-deep); }
 .price-note { color: var(--ink-soft); font-size: 14px; margin-top: 2px; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
 .chip {
   background: var(--foam);
-  color: var(--ocean-deep);
+  color: var(--red-deep);
   border-radius: 999px;
   padding: 6px 12px;
   font-size: 13px;
   font-weight: 600;
 }
 
-/* ===== Sections ===== */
+/* ===== Секции ===== */
 .section { padding: 28px 16px 0; }
+.section.page { padding-top: 20px; }
 .section h2 { font-size: 22px; color: var(--ocean-deep); }
 .section .sub { color: var(--ink-soft); font-size: 14px; margin-top: 4px; }
 
-/* ===== Route cards ===== */
+/* ===== Маршруты ===== */
 .route-card {
   background: var(--card-bg);
   border-radius: var(--radius);
@@ -88,26 +92,20 @@ body {
   overflow: hidden;
   margin-top: 16px;
 }
-.route-cover {
-  height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 56px;
-}
+.route-cover { height: 110px; display: flex; align-items: center; justify-content: center; font-size: 52px; }
 .route-body { padding: 16px; }
 .route-body h3 { font-size: 18px; }
 .route-body p { color: var(--ink-soft); font-size: 14px; margin-top: 6px; line-height: 1.45; }
 .route-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
 .route-tag {
   font-size: 12px; font-weight: 600;
-  color: var(--ocean);
+  color: var(--red-deep);
   background: var(--foam);
   border-radius: 999px;
   padding: 4px 10px;
 }
 
-/* ===== Included ===== */
+/* ===== Что входит ===== */
 .included-list { list-style: none; margin-top: 12px; }
 .included-list li {
   background: var(--card-bg);
@@ -118,12 +116,23 @@ body {
   font-size: 15px;
 }
 
+/* ===== Галерея ===== */
+.gallery-item {
+  margin-top: 16px;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.gallery-item img { display: block; width: 100%; }
+.gallery-item figcaption { padding: 10px 14px; font-size: 13px; color: var(--ink-soft); }
+
 /* ===== FAQ ===== */
 .faq-item {
   background: var(--card-bg);
   border-radius: 12px;
   box-shadow: var(--shadow);
-  margin-top: 8px;
+  margin-top: 10px;
   overflow: hidden;
 }
 .faq-item summary {
@@ -136,51 +145,88 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-.faq-item summary::after { content: '+'; color: var(--ocean); font-size: 20px; }
+.faq-item summary::after { content: '+'; color: var(--red); font-size: 20px; }
 .faq-item[open] summary::after { content: '–'; }
 .faq-item p { padding: 0 14px 14px; color: var(--ink-soft); font-size: 14px; line-height: 1.45; }
 
-/* ===== Contacts ===== */
-.contact-row { display: flex; gap: 8px; margin-top: 12px; }
-.contact-btn {
-  flex: 1;
+/* ===== Контакты ===== */
+.contact-big {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
   background: var(--card-bg);
-  border: 1px solid #dbe9f2;
-  border-radius: 12px;
-  padding: 12px;
+  border: 1px solid #eadfdd;
+  border-radius: 14px;
+  padding: 15px;
   text-align: center;
   text-decoration: none;
-  color: var(--ocean-deep);
+  color: var(--ink);
   font-weight: 600;
-  font-size: 14px;
+  font-size: 15px;
+  cursor: pointer;
 }
-.contact-handle { text-align: center; color: var(--ink-soft); font-size: 13px; margin-top: 10px; }
+.contact-big.cta-red {
+  background: linear-gradient(135deg, var(--red-soft) 0%, var(--red-deep) 100%);
+  color: #fff;
+  border: none;
+  box-shadow: 0 6px 18px rgba(230, 57, 70, 0.35);
+}
+.contact-handle { text-align: center; color: var(--ink-soft); font-size: 13px; margin-top: 12px; }
+.cta-hint { text-align: center; font-size: 12px; color: var(--ink-soft); margin-top: 6px; }
 
-/* ===== Sticky CTA ===== */
-.cta-bar {
+/* ===== Футер-навигация ===== */
+.tabbar {
   position: fixed;
   bottom: 0; left: 0; right: 0;
   max-width: 480px;
   margin: 0 auto;
-  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  border-top: 1px solid #e3eef5;
+  display: flex;
+  align-items: flex-end;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid #e8e2e1;
+  border-radius: 18px 18px 0 0;
+  padding: 8px 6px calc(8px + env(safe-area-inset-bottom));
+  box-shadow: 0 -6px 24px rgba(16, 28, 44, 0.12);
 }
-.cta-btn {
-  display: block;
-  width: 100%;
-  background: var(--cta);
-  color: #fff;
+.tab {
+  flex: 1;
+  background: none;
   border: none;
-  border-radius: 14px;
-  padding: 15px;
-  font-size: 17px;
-  font-weight: 700;
-  text-align: center;
-  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 6px 2px;
   cursor: pointer;
-  transition: background 0.15s;
+  color: var(--ink-soft);
+  border-radius: 12px;
 }
-.cta-btn:active { background: var(--cta-hover); }
-.cta-hint { text-align: center; font-size: 12px; color: var(--ink-soft); margin-top: 6px; }
+.tab-icon { font-size: 21px; line-height: 1; }
+.tab-label { font-size: 11px; font-weight: 600; }
+.tab.active { color: var(--red-deep); background: var(--foam); }
+
+.tab-book {
+  flex: 1.15;
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  margin-top: -26px;
+  padding: 0 2px 6px;
+}
+.tab-book-btn {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--red-soft) 0%, var(--red-deep) 100%);
+  box-shadow: 0 8px 20px rgba(230, 57, 70, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  border: 3px solid #fff;
+}
+.tab-book-label { font-size: 11px; font-weight: 700; color: var(--red-deep); }
