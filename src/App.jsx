@@ -1,20 +1,29 @@
 import { useEffect, useState } from 'react';
 import { CONTACTS, PRICING, ROUTES, GALLERY, HERO_PHOTO } from './data.js';
 import { STRINGS, detectLang } from './i18n.js';
+import { ROUTE_COVERS, HomeIcon, PhotoIcon, FaqIcon, PhoneIcon, SailIcon } from './icons.jsx';
 
 const tg = window.Telegram?.WebApp;
 
+// Мобильный или десктоп: по платформе Telegram, с запасным вариантом по UA
+function detectMobile() {
+  const p = tg?.platform;
+  if (p) return p === 'android' || p === 'ios';
+  return /Android|iPhone|iPad|Mobile/i.test(navigator.userAgent);
+}
+
 const TABS = [
-  { id: 'home', icon: '⛵', label: 'tabHome' },
-  { id: 'gallery', icon: '📸', label: 'tabGallery' },
-  { id: 'book', icon: '', label: 'bookShort' },
-  { id: 'faq', icon: '💬', label: 'tabFaq' },
-  { id: 'contacts', icon: '📞', label: 'tabContacts' },
+  { id: 'home', Icon: HomeIcon, label: 'tabHome' },
+  { id: 'gallery', Icon: PhotoIcon, label: 'tabGallery' },
+  { id: 'book', Icon: SailIcon, label: 'bookShort' },
+  { id: 'faq', Icon: FaqIcon, label: 'tabFaq' },
+  { id: 'contacts', Icon: PhoneIcon, label: 'tabContacts' },
 ];
 
 export default function App() {
   const [lang, setLang] = useState(detectLang);
   const [tab, setTab] = useState('home');
+  const isMobile = detectMobile();
   const t = (key) => STRINGS[key][lang];
 
   useEffect(() => {
@@ -29,31 +38,42 @@ export default function App() {
     else window.open(CONTACTS.telegram, '_blank');
   };
 
+  const langSwitch = (
+    <button
+      className="lang-switch"
+      onClick={() => setLang(lang === 'ru' ? 'en' : 'ru')}
+    >
+      {isMobile
+        ? (lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU')
+        : (lang === 'ru' ? 'EN' : 'RU')}
+    </button>
+  );
+
+  // Заголовок в шапке: на главной — общий, на остальных — название страницы
+  const heroTitle = {
+    home: t('heroTitle'),
+    faq: t('faqTitle'),
+    contacts: t('contactsTitle'),
+  }[tab];
+
   return (
     <div className="app">
+      {tab !== 'gallery' && (
+        <header
+          className={'hero' + (tab === 'home' ? '' : ' hero-compact')}
+          style={{ backgroundImage: `url(${HERO_PHOTO})` }}
+        >
+          <div className="hero-shade" />
+          <div className="hero-top">{langSwitch}</div>
+          <div className="hero-text">
+            <h1>{heroTitle}</h1>
+            {tab === 'home' && <p>{t('heroSubtitle')}</p>}
+          </div>
+        </header>
+      )}
+
       {tab === 'home' && (
         <>
-          {/* Hero: фото катамарана */}
-          <header
-            className="hero"
-            style={{ backgroundImage: `url(${HERO_PHOTO})` }}
-          >
-            <div className="hero-shade" />
-            <div className="hero-top">
-              <button
-                className="lang-switch"
-                onClick={() => setLang(lang === 'ru' ? 'en' : 'ru')}
-              >
-                {lang === 'ru' ? '🇬🇧 EN' : '🇷🇺 RU'}
-              </button>
-            </div>
-            <div className="hero-text">
-              <h1>{t('heroTitle')}</h1>
-              <p>{t('heroSubtitle')}</p>
-            </div>
-          </header>
-
-          {/* Цена */}
           <div className="price-card">
             <div className="price-value">{PRICING.priceLabel[lang]}</div>
             <div className="price-note">{t('perBoat')}</div>
@@ -64,29 +84,30 @@ export default function App() {
             </div>
           </div>
 
-          {/* Маршруты */}
           <section className="section">
             <h2>{t('routesTitle')}</h2>
             <p className="sub">{t('routesSubtitle')}</p>
-            {ROUTES.map((r) => (
-              <article className="route-card" key={r.id}>
-                <div className="route-cover" style={{ background: r.gradient }}>
-                  {r.emoji}
-                </div>
-                <div className="route-body">
-                  <h3>{r.title[lang]}</h3>
-                  <p>{r.desc[lang]}</p>
-                  <div className="route-tags">
-                    {r.tags[lang].map((tag) => (
-                      <span className="route-tag" key={tag}>{tag}</span>
-                    ))}
-                  </div>
-                </div>
-              </article>
-            ))}
+            <div className="routes-grid">
+              {ROUTES.map((r) => {
+                const Cover = ROUTE_COVERS[r.id];
+                return (
+                  <article className="route-card" key={r.id}>
+                    <div className="route-cover">{Cover ? <Cover /> : null}</div>
+                    <div className="route-body">
+                      <h3>{r.title[lang]}</h3>
+                      <p>{r.desc[lang]}</p>
+                      <div className="route-tags">
+                        {r.tags[lang].map((tag) => (
+                          <span className="route-tag" key={tag}>{tag}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
           </section>
 
-          {/* Что входит */}
           <section className="section">
             <h2>{t('included')}</h2>
             <ul className="included-list">
@@ -100,20 +121,24 @@ export default function App() {
 
       {tab === 'gallery' && (
         <section className="section page">
-          <h2>{t('galleryTitle')}</h2>
+          <div className="page-head">
+            <h2>{t('galleryTitle')}</h2>
+            {langSwitch}
+          </div>
           <p className="sub">{t('gallerySubtitle')}</p>
-          {GALLERY.map((ph) => (
-            <figure className="gallery-item" key={ph.src}>
-              <img src={ph.src} alt={ph.caption[lang]} loading="lazy" />
-              <figcaption>{ph.caption[lang]}</figcaption>
-            </figure>
-          ))}
+          <div className="gallery-grid">
+            {GALLERY.map((ph) => (
+              <figure className="gallery-item" key={ph.src}>
+                <img src={ph.src} alt={ph.caption[lang]} loading="lazy" />
+                <figcaption>{ph.caption[lang]}</figcaption>
+              </figure>
+            ))}
+          </div>
         </section>
       )}
 
       {tab === 'faq' && (
         <section className="section page">
-          <h2>{t('faqTitle')}</h2>
           {STRINGS.faq[lang].map(([q, a]) => (
             <details className="faq-item" key={q}>
               <summary>{q}</summary>
@@ -125,30 +150,25 @@ export default function App() {
 
       {tab === 'contacts' && (
         <section className="section page">
-          <h2>{t('contactsTitle')}</h2>
           <p className="sub">{t('contactsSubtitle')}</p>
-          <button className="contact-big cta-red" onClick={openTelegram}>
-            ✈️ {t('writeTg')}
-          </button>
-          <a className="contact-big" href={`tel:${CONTACTS.phoneRaw}`}>
-            📞 {t('call')} · {CONTACTS.phone}
-          </a>
-          <a className="contact-big" href={`mailto:${CONTACTS.email}`}>
-            ✉️ {t('write')}
-          </a>
-          <p className="contact-handle">
-            Telegram: {CONTACTS.telegramHandle}
-          </p>
+          <div className="contacts-wrap">
+            <button className="contact-big cta-red" onClick={openTelegram}>
+              {t('writeTg')}
+            </button>
+            <a className="contact-big" href={`tel:${CONTACTS.phoneRaw}`}>
+              {t('call')} · {CONTACTS.phone}
+            </a>
+          </div>
+          <p className="contact-handle">Telegram: {CONTACTS.telegramHandle}</p>
           <p className="cta-hint">{t('bookHint')}</p>
         </section>
       )}
 
-      {/* Футер-навигация */}
       <nav className="tabbar">
         {TABS.map((item) =>
           item.id === 'book' ? (
             <button className="tab-book" key="book" onClick={openTelegram}>
-              <span className="tab-book-btn">⛵</span>
+              <span className="tab-book-btn"><SailIcon /></span>
               <span className="tab-book-label">{t('bookShort')}</span>
             </button>
           ) : (
@@ -157,7 +177,7 @@ export default function App() {
               className={'tab' + (tab === item.id ? ' active' : '')}
               onClick={() => setTab(item.id)}
             >
-              <span className="tab-icon">{item.icon}</span>
+              <span className="tab-icon"><item.Icon /></span>
               <span className="tab-label">{t(item.label)}</span>
             </button>
           )

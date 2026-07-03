@@ -16,28 +16,36 @@ export const PRICING = {
 };
 
 // Фото: кладите файлы в public/photos и добавляйте сюда
-export const HERO_PHOTO = '/photos/catamaran.jpg';
+export const HERO_PHOTO = '/photos/catamaran.webp';
 
 export const GALLERY = [
   {
-    src: '/photos/catamaran.jpg',
+    src: '/photos/catamaran.webp',
     caption: { ru: 'Наш катамаран в заливе Нячанга', en: 'Our catamaran in Nha Trang Bay' },
   },
   {
-    src: '/photos/beach-city.jpg',
+    src: '/photos/beach-city.webp',
     caption: { ru: 'Старт с городского пляжа Нячанга', en: 'Setting off from Nha Trang city beach' },
   },
   {
-    src: '/photos/beach-captain.jpg',
+    src: '/photos/beach-captain.webp',
     caption: { ru: 'Капитан ждёт вас на берегу', en: 'Your captain waiting on the shore' },
   },
   {
-    src: '/photos/beach-bay.jpg',
+    src: '/photos/beach-bay.webp',
     caption: { ru: 'Готовы к выходу — море и острова впереди', en: 'Ready to sail — the bay and islands ahead' },
   },
   {
-    src: '/photos/guests.jpg',
+    src: '/photos/guests.webp',
     caption: { ru: 'Наши гости — жилеты для всех на борту', en: 'Our guests — life jackets for everyone aboard' },
+  },
+  {
+    src: '/photos/sailing.webp',
+    caption: { ru: 'Под парусом по заливу', en: 'Under sail across the bay' },
+  },
+  {
+    src: '/photos/onboard.webp',
+    caption: { ru: 'На борту — простор и безопасность', en: 'On board — roomy and safe' },
   },
 ];
 
