@@ -16,6 +16,21 @@ export const STRINGS = {
     ru: 'Цена одна — выбирайте, как провести свои 4 часа',
     en: 'One price — choose how to spend your 4 hours',
   },
+  tripFlowTitle: { ru: 'Как проходит прогулка', en: 'How the trip goes' },
+  tripFlow: {
+    ru: [
+      ['Встреча и выход в море', 'Забираем у набережной, короткий инструктаж, спасжилеты — и берём курс в открытое море.'],
+      ['Острова и снорклинг', 'Идём к островам залива, встаём на стоянку — купание и снорклинг в прозрачной воде.'],
+      ['За штурвалом или отдых', 'Хочешь — становись за штурвал под парусом, хочешь — загорай с видом на бухту.'],
+      ['Закат и возвращение', 'Встречаем закат прямо в море и не спеша идём назад, к огням города.'],
+    ],
+    en: [
+      ['Meet & set sail', 'We pick you up at the seafront, a quick safety briefing, life jackets — and head out to open sea.'],
+      ['Islands & snorkeling', 'We sail to the bay islands and drop anchor — swim and snorkel in crystal-clear water.'],
+      ['Take the helm or relax', 'Take the wheel under sail if you like, or just sunbathe with the bay all around you.'],
+      ['Sunset & back', 'We meet the sunset out at sea and drift slowly back toward the city lights.'],
+    ],
+  },
   included: { ru: 'Что входит', en: "What's included" },
   includedList: {
     ru: [

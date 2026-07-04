@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import { CONTACTS, PRICING, ROUTES, GALLERY, HERO_PHOTO, APP_LINK } from './data.js';
 import { STRINGS, detectLang } from './i18n.js';
-import { ROUTE_COVERS, HomeIcon, PhotoIcon, FaqIcon, PhoneIcon, SailIcon } from './icons.jsx';
+import { ROUTE_COVERS, BayMap, HomeIcon, PhotoIcon, FaqIcon, PhoneIcon, SailIcon } from './icons.jsx';
 
 const tg = window.Telegram?.WebApp;
 
@@ -129,6 +129,22 @@ export default function App() {
                 );
               })}
             </div>
+          </section>
+
+          <section className="section">
+            <h2>{t('tripFlowTitle')}</h2>
+            <div className="map-frame"><BayMap /></div>
+            <ol className="timeline">
+              {tr(STRINGS.tripFlow).map(([title, text], i) => (
+                <li className="timeline-item" key={title}>
+                  <span className="timeline-dot">{i + 1}</span>
+                  <div className="timeline-body">
+                    <h4>{title}</h4>
+                    <p>{text}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
           </section>
 
           <section className="section">

@@ -178,6 +178,41 @@ body {
   font-weight: 600;
 }
 
+/* ===== Как проходит прогулка ===== */
+.map-frame {
+  margin-top: 12px;
+  height: 170px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  line-height: 0;
+}
+.map-frame svg { display: block; width: 100%; height: 100%; }
+.timeline { list-style: none; margin-top: 18px; }
+.timeline-item { position: relative; display: flex; gap: 14px; padding-bottom: 18px; }
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 13px; top: 30px; bottom: -4px;
+  width: 2px;
+  background: var(--aqua-tint);
+}
+.timeline-item:last-child::before { display: none; }
+.timeline-dot {
+  flex: 0 0 auto;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal) 0%, var(--ocean) 100%);
+  color: #fff;
+  font-size: 14px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1;
+  box-shadow: 0 2px 8px rgba(11, 45, 79, 0.2);
+}
+.timeline-body h4 { font-size: 15px; color: var(--deep); }
+.timeline-body p { font-size: 14px; color: var(--ink-soft); margin-top: 3px; line-height: 1.45; }
+
 /* ===== Галерея ===== */
 .gallery-grid { margin-top: 4px; }
 .gallery-item {
