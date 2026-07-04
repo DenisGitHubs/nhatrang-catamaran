@@ -72,6 +72,8 @@ body {
 .hero-compact .hero-text { padding-bottom: 24px; }
 .hero-text h1 { font-size: 28px; line-height: 1.15; text-shadow: 0 2px 12px rgba(4, 22, 42, 0.5); }
 .hero-text p { margin-top: 6px; font-size: 15px; opacity: 0.95; max-width: 340px; text-shadow: 0 1px 8px rgba(4, 22, 42, 0.55); }
+.hero-usp { list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 5px; }
+.hero-usp li { font-size: 13.5px; font-weight: 600; text-shadow: 0 1px 8px rgba(4, 22, 42, 0.6); }
 
 /* ===== Цена ===== */
 .price-card {
@@ -92,7 +94,7 @@ body {
   color: var(--teal-deep);
   border-radius: 999px;
   padding: 6px 12px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -105,6 +107,7 @@ body {
   display: inline-block;
   position: relative;
   padding-bottom: 8px;
+  overflow-wrap: anywhere;
 }
 /* волнистое подчёркивание заголовков */
 .section h2::after {
@@ -138,7 +141,7 @@ body {
 .route-body p { color: var(--ink-soft); font-size: 14px; margin-top: 6px; line-height: 1.45; }
 .route-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
 .route-tag {
-  font-size: 12px; font-weight: 600;
+  font-size: 13px; font-weight: 600;
   color: var(--teal-deep);
   background: var(--aqua-tint);
   border-radius: 999px;
@@ -263,7 +266,10 @@ body {
   font-weight: 600;
   font-size: 15px;
   cursor: pointer;
+  transition: transform 0.12s ease, filter 0.12s ease;
 }
+.contact-big:active { transform: scale(0.985); }
+.contact-big.cta-main:active { filter: brightness(0.95); }
 .contact-big.cta-main {
   background: linear-gradient(135deg, var(--coral) 0%, var(--coral-deep) 100%);
   color: #fff;
@@ -272,6 +278,10 @@ body {
 }
 .contact-handle { text-align: center; color: var(--ink-soft); font-size: 13px; margin-top: 12px; }
 .cta-hint { text-align: center; font-size: 12px; color: var(--ink-soft); margin-top: 6px; }
+
+/* ===== Ранний CTA в середине главной ===== */
+.mid-cta { padding: 24px 16px 0; }
+.mid-cta .contact-big { margin: 0 auto; max-width: 480px; }
 
 /* ===== QR + Поделиться ===== */
 .qr-block { margin-top: 22px; display: flex; flex-direction: column; align-items: center; text-align: center; }
@@ -321,10 +331,12 @@ body {
   cursor: pointer;
   color: var(--ink-soft);
   border-radius: 12px;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
 }
 .tab-icon { line-height: 0; }
 .tab-label { font-size: 11px; font-weight: 600; }
-.tab.active { color: var(--teal-deep); background: var(--aqua-tint); }
+.tab.active { color: var(--deep); background: #cdeef2; font-weight: 700; }
+.tab:active { transform: scale(0.95); }
 
 .tab-book {
   flex: 1.15;
@@ -350,6 +362,8 @@ body {
   line-height: 0;
 }
 .tab-book-label { font-size: 11px; font-weight: 700; color: var(--coral-deep); }
+.tab-book-btn { transition: transform 0.12s ease; }
+.tab-book:active .tab-book-btn { transform: scale(0.93); }
 
 /* ===== Планшет и десктоп ===== */
 @media (min-width: 700px) {

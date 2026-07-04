@@ -5,8 +5,13 @@ export const STRINGS = {
   },
   heroSubtitle: {
     ru: 'Частная морская прогулка под парусом — только вы, море и капитан',
-    en: 'Private sailing trip — just you, the sea and your captain',
+    en: 'Private sailing — just you, the sea and the captain',
   },
+  heroBullets: {
+    ru: ['⛵ Только вы — вся лодка ваша', '👨‍✈️ Опытный капитан рядом', '🌅 4 часа в море — свой маршрут'],
+    en: ['⛵ Just your group — the whole boat is yours', '👨‍✈️ An experienced captain with you', '🌅 4 hours at sea — your own route'],
+  },
+  bookCta: { ru: 'Забронировать', en: 'Book now' },
   perBoat: { ru: 'за лодку целиком', en: 'per whole boat' },
   hours: { ru: '4 часа в море', en: '4 hours at sea' },
   guests: { ru: 'до 3 гостей + капитан', en: 'up to 3 guests + captain' },
@@ -28,7 +33,7 @@ export const STRINGS = {
       ['Meet & set sail', 'We pick you up at the seafront, a quick safety briefing, life jackets — and head out to open sea.'],
       ['Islands & snorkeling', 'We sail to the bay islands and drop anchor — swim and snorkel in crystal-clear water.'],
       ['Take the helm or relax', 'Take the wheel under sail if you like, or just sunbathe with the bay all around you.'],
-      ['Sunset & back', 'We meet the sunset out at sea and drift slowly back toward the city lights.'],
+      ['Sunset & back', 'Watch the sunset from the sea, then drift slowly back toward the city lights.'],
     ],
   },
   included: { ru: 'Что входит', en: "What's included" },
@@ -41,7 +46,7 @@ export const STRINGS = {
       '💧 Питьевая вода',
     ],
     en: [
-      '⛵ The whole catamaran — no strangers aboard',
+      '⛵ The whole catamaran — just your group, no one else',
       '👨‍✈️ Experienced captain',
       '🦺 Life jackets',
       '🤿 Snorkeling masks',
@@ -51,7 +56,7 @@ export const STRINGS = {
   helmTitle: { ru: 'За штурвалом', en: 'Take the Helm' },
   helmText: {
     ru: 'Можно не просто любоваться морем, а встать за штурвал самому. Капитан покажет, как держать курс и управлять парусом, — почувствуешь настоящий яхтинг. Опыт не нужен, всё объясним с нуля.',
-    en: "Don't just watch the sea — take the wheel yourself. Your captain shows you how to hold a course and work the sail, so you feel real sailing. No experience needed, we start from scratch.",
+    en: "Don't just watch the sea — take the wheel yourself. Your captain will show you how to hold a course and work the sail, so you feel real sailing. No experience needed, we start from scratch.",
   },
   helmList: {
     ru: [
@@ -72,22 +77,26 @@ export const STRINGS = {
   faqTitle: { ru: 'Частые вопросы', en: 'FAQ' },
   faq: {
     ru: [
-      ['Где посадка?', 'Точку посадки пришлём после бронирования — это набережная Нячанга, добираться удобно из любого отеля.'],
-      ['Можно с детьми?', 'Да! Детские жилеты есть на борту. Дети считаются как гости — всего на борту до 3 гостей.'],
+      ['Где посадка?', 'Отправляемся с пирса на реке Кай. Точное место и время пришлём после брони — добираться удобно из любого отеля.'],
+      ['Что взять с собой в море?', 'Купальник, полотенце, крем от солнца, головной убор, очки и закрытую одежду от солнца. Перекус — можно, упакуйте от воды. Лёгкий алкоголь допустим в разумных пределах и под свою ответственность. Аптечка есть на борту; если вас укачивает — возьмите таблетки заранее. Воду, спасжилеты и маски для снорклинга даём мы.'],
+      ['Можно с детьми?', 'Да, с сопровождающим взрослым — детские жилеты на борту есть. Совсем малышей (примерно до 3 лет) берём по согласованию и только в спокойную погоду. Дети считаются гостями — всего до 3 на борту.'],
+      ['Будет ли качать?', 'Зависит от сезона и погоды в день прогулки. Перед бронированием подскажем, каким ожидается море.'],
       ['А если погода испортится?', 'Перенесём прогулку на другой день или вернём предоплату — как вам удобнее.'],
-      ['Как оплатить?', 'Наличными в донгах или переводом. Детали — при бронировании.'],
+      ['Как оплатить?', 'Небольшая предоплата закрепляет за вами день и время. Оплата — наличными, переводом на карту или криптовалютой. Детали пришлём при бронировании.'],
     ],
     en: [
-      ['Where do we board?', "We'll send the meeting point after booking — it's on the Nha Trang seafront, easy to reach from any hotel."],
-      ['Can we bring kids?', 'Sure! Kids life jackets are on board. Children count as guests — up to 3 guests total.'],
+      ['Where do we board?', "We set off from the pier on the Cai River. We'll send the exact spot and time after booking — easy to reach from any hotel."],
+      ['What should I bring?', 'Swimwear, a towel, sunscreen, a hat, sunglasses and light cover-up clothing. A snack is fine — pack it waterproof. Light alcohol is allowed in moderation and at your own responsibility. There is a first-aid kit on board; if you get seasick, bring pills in advance. We provide water, life jackets and snorkeling masks.'],
+      ['Can we bring kids?', 'Yes, with an accompanying adult — kids life jackets are on board. Very young children (roughly under 3) by prior arrangement and only in calm weather. Children count as guests — up to 3 aboard total.'],
+      ['Will it be rough?', "It depends on the season and the weather that day. We'll tell you what to expect before you book."],
       ['What if the weather turns bad?', "We'll reschedule for another day or refund your deposit — whichever you prefer."],
-      ['How do I pay?', 'Cash in VND or bank transfer. Details when you book.'],
+      ['How do I pay?', 'A small deposit reserves your day and time. Pay by cash, card transfer or crypto. We send the details when you book.'],
     ],
   },
   bookShort: { ru: 'Бронь', en: 'Book' },
   bookHint: {
-    ru: 'Напишите Денису — ответит быстро и поможет выбрать время',
-    en: "Message Denis — he replies fast and will help you pick a time",
+    ru: 'Напишите Денису — ответит в течение часа и подберёт удобное время',
+    en: 'Message Denis — he replies within an hour and helps you pick the perfect time',
   },
   contactsTitle: { ru: 'Контакты', en: 'Contacts' },
   contactsSubtitle: {

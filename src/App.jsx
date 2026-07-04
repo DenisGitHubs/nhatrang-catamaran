@@ -90,7 +90,16 @@ export default function App() {
           <div className="hero-top">{langSwitch}</div>
           <div className="hero-text">
             <h1>{heroTitle}</h1>
-            {tab === 'home' && <p>{t('heroSubtitle')}</p>}
+            {tab === 'home' && (
+              <>
+                <p>{t('heroSubtitle')}</p>
+                <ul className="hero-usp">
+                  {tr(STRINGS.heroBullets).map((b) => (
+                    <li key={b}>{b}</li>
+                  ))}
+                </ul>
+              </>
+            )}
           </div>
         </header>
       )}
@@ -146,6 +155,10 @@ export default function App() {
               ))}
             </ol>
           </section>
+
+          <div className="mid-cta">
+            <button className="contact-big cta-main" onClick={openTelegram}>{t('bookCta')}</button>
+          </div>
 
           <section className="section">
             <h2>{t('helmTitle')}</h2>

@@ -10,3 +10,8 @@ CLAUDE.md
 vite.config.js.timestamp-*.mjs
 .vercel
 Thumbs.db
+
+# Секреты окружения — НИКОГДА не коммитим (шаблон в .env.example)
+.env
+.env.local
+.env.*.local
