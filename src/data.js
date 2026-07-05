@@ -6,6 +6,7 @@ export const CONTACTS = {
   email: 'sokurenkoda87@gmail.com',
   telegram: 'https://t.me/DenisSokurenko',
   telegramHandle: '@DenisSokurenko',
+  whatsapp: 'https://wa.me/84772981653',
 };
 
 // Ссылка на мини-апп (из BotFather) — её кодирует QR и ею делятся в Telegram.
@@ -32,7 +33,7 @@ export const GALLERY = [
   },
   {
     src: '/photos/beach-captain.webp',
-    caption: { ru: 'Капитан ждёт вас на берегу', en: 'Your captain waiting on the shore' },
+    caption: { ru: 'Ваш капитан — опытный и всегда рядом', en: 'Your captain — experienced and always by your side' },
   },
   {
     src: '/photos/beach-bay.webp',
@@ -40,11 +41,11 @@ export const GALLERY = [
   },
   {
     src: '/photos/guests.webp',
-    caption: { ru: 'Наши гости — жилеты для всех на борту', en: 'Our guests — life jackets for everyone aboard' },
+    caption: { ru: 'Наши гости — и целое море впечатлений', en: 'Our guests — and a whole sea of good memories' },
   },
   {
     src: '/photos/sailing.webp',
-    caption: { ru: 'Под парусом по заливу', en: 'Under sail across the bay' },
+    caption: { ru: 'Под парусом по реке Кай', en: 'Under sail on the Cai River' },
   },
   {
     src: '/photos/onboard.webp',
@@ -90,3 +91,44 @@ export const ROUTES = [
     },
   },
 ];
+
+// Допродажи — сделают прогулку особеннее. Цены не публикуем, называем при брони.
+export const ADDONS = [
+  {
+    id: 'drone',
+    title: { ru: '📸 Дрон-фотосессия', en: '📸 Drone photo session' },
+    desc: { ru: 'Кадры с высоты — вы и катамаран посреди моря', en: 'Aerial shots — you and the catamaran out at sea' },
+  },
+  {
+    id: 'fruits',
+    title: { ru: '🍍 Свежие фрукты', en: '🍍 Fresh fruit' },
+    desc: { ru: 'Тропическая тарелка к морю и солнцу', en: 'A tropical platter for the sea and sun' },
+  },
+  {
+    id: 'champagne',
+    title: { ru: '🍾 Шампанское', en: '🍾 Champagne' },
+    desc: { ru: 'Отметить момент прямо на воде', en: 'Toast the moment right on the water' },
+  },
+  {
+    id: 'beer',
+    title: { ru: '🍺 Холодное пиво', en: '🍺 Cold beer' },
+    desc: { ru: 'Освежиться в жаркий день', en: 'Cool off on a hot day' },
+  },
+  {
+    id: 'extrahour',
+    title: { ru: '⏱ Дополнительный час', en: '⏱ Extra hour at sea' },
+    desc: { ru: 'Продлить прогулку, когда уходить не хочется', en: 'Stay longer when you just do not want to head back' },
+  },
+];
+
+// Отзывы гостей. Пока пусто — блок появится, как только добавим первую запись.
+// Пример структуры:
+// {
+//   name: 'Анна',
+//   country: { ru: 'Россия', en: 'Russia' },
+//   text: {
+//     ru: 'Лучшее утро в Нячанге — вода, паруса и никакой толпы!',
+//     en: 'Best morning in Nha Trang — water, sails and no crowds!',
+//   },
+// },
+export const REVIEWS = [];

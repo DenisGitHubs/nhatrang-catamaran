@@ -32,7 +32,7 @@ body {
 /* ===== Hero: фото ===== */
 .hero {
   position: relative;
-  height: 300px;
+  height: 260px;
   background-size: cover;
   background-position: center 62%;
   color: #fff;
@@ -80,7 +80,7 @@ body {
   background: var(--card-bg);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  margin: -14px 16px 0;
+  margin: -26px 16px 0;
   position: relative;
   padding: 20px;
   text-align: center;
@@ -88,6 +88,14 @@ body {
 }
 .price-value { font-size: 34px; font-weight: 800; color: var(--deep); }
 .price-note { color: var(--ink-soft); font-size: 14px; margin-top: 2px; }
+/* Якорь цены — цена за человека против групповой экскурсии */
+.price-anchor {
+  color: var(--teal-deep);
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 8px;
+  line-height: 1.4;
+}
 .chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
 .chip {
   background: var(--aqua-tint);
@@ -97,6 +105,31 @@ body {
   font-size: 14px;
   font-weight: 600;
 }
+/* Бейдж доверия — политика отмены */
+.cancel-policy {
+  margin-top: 14px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  background: var(--aqua-tint);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+/* Компактная CTA — меньше основной, коралловая */
+.check-dates {
+  margin-top: 14px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--coral) 0%, var(--coral-deep) 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 999px;
+  padding: 10px 22px;
+  box-shadow: 0 4px 14px rgba(239, 84, 51, 0.32);
+  transition: transform 0.12s ease, filter 0.12s ease;
+}
+.check-dates:active { transform: scale(0.97); filter: brightness(0.95); }
 
 /* ===== Секции ===== */
 .section { padding: 28px 16px 0; }
@@ -159,6 +192,33 @@ body {
   margin-top: 8px;
   font-size: 15px;
 }
+
+/* ===== Допродажи ===== */
+.addons-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.addon-card {
+  flex: 1 1 calc(50% - 4px);
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  border-left: 3px solid var(--coral);
+  padding: 12px 14px;
+}
+.addon-title { font-size: 15px; font-weight: 700; color: var(--deep); }
+.addon-desc { font-size: 13px; color: var(--ink-soft); margin-top: 4px; line-height: 1.4; }
+
+/* ===== Отзывы гостей ===== */
+.reviews-grid { margin-top: 12px; display: grid; gap: 12px; }
+.review-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border-left: 3px solid var(--teal);
+  padding: 16px 18px;
+}
+.review-text { font-size: 14.5px; line-height: 1.5; color: var(--ink); }
+.review-author { margin-top: 10px; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.review-name { font-size: 14px; font-weight: 700; color: var(--deep); }
+.review-country { font-size: 13px; color: var(--ink-soft); }
 
 /* ===== За штурвалом ===== */
 .helm-card {
@@ -275,6 +335,13 @@ body {
   color: #fff;
   border: none;
   box-shadow: 0 6px 18px rgba(239, 84, 51, 0.35);
+}
+/* WhatsApp — вторичная кнопка: белая карточка с зелёной каймой и текстом #25D366 */
+.contact-big.wa-btn {
+  background: #fff;
+  color: #128c3e;
+  border: 1.5px solid #25D366;
+  font-weight: 700;
 }
 .contact-handle { text-align: center; color: var(--ink-soft); font-size: 13px; margin-top: 12px; }
 .cta-hint { text-align: center; font-size: 12px; color: var(--ink-soft); margin-top: 6px; }

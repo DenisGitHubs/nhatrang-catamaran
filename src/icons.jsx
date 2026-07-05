@@ -266,87 +266,89 @@ export const ROUTE_COVERS = {
   freeride: FreeRouteCover,
 };
 
-/* ===== Карта Нячангского залива с маршрутом ===== */
-export function BayMap() {
+/* ===== Панорама прогулки: от дневного выхода к закату ===== */
+export function TripFlowScene() {
   return (
-    <svg viewBox="0 0 400 190" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Карта Нячангского залива с маршрутом прогулки">
+    <svg viewBox="0 0 400 170" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Морская панорама: от дневного выхода к закату">
       <defs>
-        <linearGradient id="bay-sea" x1="0" y1="0" x2="0" y2="1">
+        <linearGradient id="flow-sky" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stopColor="#9fd8ef" />
+          <stop offset="0.4" stopColor="#c9eaf6" />
+          <stop offset="0.68" stopColor="#ffe6c6" />
+          <stop offset="0.86" stopColor="#ffcf9c" />
+          <stop offset="1" stopColor="#ff9e6e" />
+        </linearGradient>
+        <linearGradient id="flow-sea" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#2aa7cc" />
           <stop offset="1" stopColor="#0a5f88" />
         </linearGradient>
-        <radialGradient id="bay-sun" cx="0.5" cy="0.5" r="0.5">
-          <stop offset="0" stopColor="#fff3cf" stopOpacity="0.9" />
-          <stop offset="1" stopColor="#fff3cf" stopOpacity="0" />
+        <radialGradient id="flow-sun" cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0" stopColor="#fff3cf" stopOpacity="0.95" />
+          <stop offset="0.5" stopColor="#ffd98c" stopOpacity="0.55" />
+          <stop offset="1" stopColor="#ffd98c" stopOpacity="0" />
         </radialGradient>
       </defs>
 
-      <rect width="400" height="190" fill="url(#bay-sea)" />
+      {/* небо: слева день, справа закат */}
+      <rect width="400" height="104" fill="url(#flow-sky)" />
 
-      {/* изобаты */}
-      <g stroke="#bfeaf7" fill="none" opacity="0.2" strokeWidth="1.2">
-        <ellipse cx="252" cy="72" rx="72" ry="34" />
-        <ellipse cx="252" cy="72" rx="54" ry="24" />
+      {/* заходящее солнце справа */}
+      <circle cx="336" cy="86" r="58" fill="url(#flow-sun)" />
+      <circle cx="336" cy="92" r="17" fill="#ffdf8e" />
+
+      {/* облака, теплее к закату */}
+      <g fill="#ffffff" opacity="0.85">
+        <ellipse cx="70" cy="26" rx="26" ry="7" />
+        <ellipse cx="90" cy="21" rx="15" ry="5" />
+      </g>
+      <g fill="#ffd9b0" opacity="0.7">
+        <ellipse cx="250" cy="34" rx="24" ry="6" />
+        <ellipse cx="268" cy="29" rx="14" ry="4" />
       </g>
 
-      {/* солнце */}
-      <circle cx="332" cy="40" r="40" fill="url(#bay-sun)" />
-      <circle cx="332" cy="40" r="13" fill="#ffe08a" />
+      {/* дальние острова по горизонту */}
+      <g fill="#7fc0b0">
+        <path d="M-6 104 Q30 78 74 104 Z" />
+        <path d="M158 104 Q196 74 236 104 Z" />
+      </g>
+      {/* острова у солнца — тёплый силуэт */}
+      <g fill="#c98a63">
+        <path d="M300 104 Q332 80 372 104 Z" />
+        <path d="M252 104 Q274 90 300 104 Z" />
+      </g>
+      {/* песчаная кромка ближнего острова */}
+      <path d="M162 104 Q198 96 232 104 Z" fill="#f2e2bd" opacity="0.85" />
 
-      {/* берег и набережная слева-снизу */}
-      <path d="M0 132 Q40 122 72 130 Q98 136 122 152 L122 190 L0 190 Z" fill="#0b3a52" />
-      <path d="M0 130 Q40 120 72 128 Q98 134 122 150" fill="none" stroke="#f2e2bd" strokeWidth="3" opacity="0.85" />
-      <g fill="#0e4a68">
-        <rect x="14" y="152" width="9" height="34" />
-        <rect x="28" y="140" width="8" height="46" />
-        <rect x="40" y="158" width="10" height="28" />
-        <rect x="55" y="146" width="7" height="40" />
-        <rect x="66" y="160" width="9" height="26" />
-        <rect x="80" y="150" width="8" height="36" />
+      {/* море */}
+      <rect y="104" width="400" height="66" fill="url(#flow-sea)" />
+
+      {/* золотая дорожка под солнцем */}
+      <g fill="#ffd98c" opacity="0.8">
+        <rect x="324" y="110" width="24" height="3" rx="1.5" />
+        <rect x="316" y="118" width="40" height="3.2" rx="1.6" opacity="0.8" />
+        <rect x="306" y="127" width="60" height="3.4" rx="1.7" opacity="0.6" />
+        <rect x="296" y="138" width="80" height="3.6" rx="1.8" opacity="0.42" />
+        <rect x="286" y="150" width="100" height="3.8" rx="1.9" opacity="0.3" />
       </g>
 
-      {/* дальний остров с пальмой */}
-      <g>
-        <path d="M214 56 q22 -18 46 -8 q20 8 12 26 q-8 18 -34 14 q-28 -4 -24 -32 z" fill="#f2e2bd" />
-        <path d="M222 58 q16 -12 34 -5 q14 6 8 18 q-6 12 -26 9 q-20 -3 -16 -22 z" fill="#4c9d89" />
-        <path d="M242 46 q-1 -8 4 -12" stroke="#7a5230" strokeWidth="2" fill="none" strokeLinecap="round" />
-        <g fill="#2f8a76">
-          <path d="M246 33 q-9 -4 -15 0 q8 1 11 4 z" />
-          <path d="M246 33 q10 -3 14 2 q-8 -1 -12 2 z" />
-          <path d="M246 33 q0 -8 -6 -11 q3 6 2 10 z" />
-        </g>
+      {/* блики на воде слева */}
+      <g stroke="#dff6fb" strokeLinecap="round" fill="none" opacity="0.5">
+        <path d="M40 120 h20 M70 120 h9" strokeWidth="2" />
+        <path d="M96 138 h24 M130 138 h10" strokeWidth="2.2" />
+        <path d="M30 152 h26 M66 152 h10" strokeWidth="2.4" />
       </g>
 
-      {/* ближний остров */}
-      <g>
-        <path d="M302 122 q18 -12 36 -4 q14 6 8 20 q-6 12 -28 8 q-20 -4 -16 -24 z" fill="#f2e2bd" />
-        <path d="M308 124 q13 -9 26 -3 q10 4 6 14 q-5 9 -20 6 q-15 -3 -12 -17 z" fill="#4c9d89" />
+      {/* катамаран идёт по заливу к закату */}
+      <g transform="translate(146 120) scale(1.25)">
+        {/* кильватер */}
+        <path d="M-30 6 h14 M-12 6 h6" stroke="#dff6fb" strokeWidth="2" opacity="0.5" strokeLinecap="round" />
+        <Catamaran />
       </g>
+      {/* отражение паруса */}
+      <path d="M135 132 C 129 140 127 148 129 154 L 148 154 C 150 146 149 138 147 132 Z" fill="#ffffff" opacity="0.12" />
 
-      {/* маршрут пунктиром */}
-      <path d="M100 142 C 152 122 152 94 198 86 S 282 98 302 120" stroke="#ffd166" strokeWidth="3" strokeDasharray="8 7" fill="none" strokeLinecap="round" />
-
-      {/* точка сбора */}
-      <g transform="translate(100 142)">
-        <circle r="9" fill="none" stroke="#ff7a52" strokeWidth="2" opacity="0.5" />
-        <path d="M0 -10 C 7 -10 7 1 0 7 C -7 1 -7 -10 0 -10 Z" fill="#ff7a52" />
-        <circle cy="-4" r="2.6" fill="#fff" />
-      </g>
-
-      {/* катамаран на маршруте */}
-      <g transform="translate(200 86) rotate(-14)">
-        <path d="M-26 0 h10 M-13 0 h5" stroke="#dff6fb" strokeWidth="2" opacity="0.6" strokeLinecap="round" />
-        <rect x="-11" y="-6.5" width="24" height="3.6" rx="1.8" fill="#f4f9fb" />
-        <rect x="-11" y="3" width="24" height="3.6" rx="1.8" fill="#f4f9fb" />
-        <path d="M-5 -5 L-5 5 M7 -5 L7 5" stroke="#22405a" strokeWidth="1.5" />
-        <path d="M1 -8 L12 0 L1 8 Z" fill="#ffffff" />
-      </g>
-
-      {/* чайки */}
-      <g stroke="#eaf7fb" strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.8" transform="translate(150 42)">
-        <path d="M0 0 q4 -4 8 0 q4 -4 8 0" />
-        <path d="M22 -6 q3 -3 6 0 q3 -3 6 0" />
-      </g>
+      <Gulls transform="translate(96 40)" />
+      <Gulls transform="translate(214 24)" color="#3a7d8f" />
     </svg>
   );
 }

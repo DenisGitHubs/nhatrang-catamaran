@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
-import { CONTACTS, PRICING, ROUTES, GALLERY, HERO_PHOTO, APP_LINK } from './data.js';
+import { CONTACTS, PRICING, ROUTES, ADDONS, REVIEWS, GALLERY, HERO_PHOTO, APP_LINK } from './data.js';
 import { STRINGS, detectLang } from './i18n.js';
-import { ROUTE_COVERS, BayMap, HomeIcon, PhotoIcon, FaqIcon, PhoneIcon, SailIcon } from './icons.jsx';
+import { ROUTE_COVERS, TripFlowScene, HomeIcon, PhotoIcon, FaqIcon, PhoneIcon, SailIcon } from './icons.jsx';
 
 const tg = window.Telegram?.WebApp;
 
@@ -52,9 +52,17 @@ export default function App() {
     window.scrollTo(0, 0);
   }, [tab]);
 
+  // Открываем чат с Денисом и подставляем готовый текст брони — гостю остаётся дописать детали
   const openTelegram = () => {
-    if (tg?.openTelegramLink) tg.openTelegramLink(CONTACTS.telegram);
-    else window.open(CONTACTS.telegram, '_blank');
+    const url = `${CONTACTS.telegram}?text=${encodeURIComponent(t('bookPrefill'))}`;
+    if (tg?.openTelegramLink) tg.openTelegramLink(url);
+    else window.open(url, '_blank');
+  };
+
+  const openWhatsApp = () => {
+    const url = `${CONTACTS.whatsapp}?text=${encodeURIComponent(t('bookPrefill'))}`;
+    if (tg?.openLink) tg.openLink(url);
+    else window.open(url, '_blank');
   };
 
   const shareApp = () => {
@@ -109,11 +117,14 @@ export default function App() {
           <div className="price-card">
             <div className="price-value">{tr(PRICING.priceLabel)}</div>
             <div className="price-note">{t('perBoat')}</div>
+            <div className="price-anchor">{t('priceAnchor')}</div>
             <div className="chips">
               <span className="chip">⏱ {t('hours')}</span>
               <span className="chip">👥 {t('guests')}</span>
               <span className="chip">🔒 {t('private')}</span>
             </div>
+            <div className="cancel-policy">🛡 {t('cancelPolicy')}</div>
+            <button className="check-dates" onClick={openTelegram}>{t('checkDates')}</button>
           </div>
 
           <section className="section">
@@ -142,7 +153,7 @@ export default function App() {
 
           <section className="section">
             <h2>{t('tripFlowTitle')}</h2>
-            <div className="map-frame"><BayMap /></div>
+            <div className="map-frame"><TripFlowScene /></div>
             <ol className="timeline">
               {tr(STRINGS.tripFlow).map(([title, text], i) => (
                 <li className="timeline-item" key={title}>
@@ -181,6 +192,36 @@ export default function App() {
               ))}
             </ul>
           </section>
+
+          <section className="section">
+            <h2>{t('addonsTitle')}</h2>
+            <p className="sub">{t('addonsNote')}</p>
+            <div className="addons-grid">
+              {ADDONS.map((a) => (
+                <article className="addon-card" key={a.id}>
+                  <div className="addon-title">{tr(a.title)}</div>
+                  {a.desc && <div className="addon-desc">{tr(a.desc)}</div>}
+                </article>
+              ))}
+            </div>
+          </section>
+
+          {REVIEWS.length > 0 && (
+            <section className="section">
+              <h2>{t('reviewsTitle')}</h2>
+              <div className="reviews-grid">
+                {REVIEWS.map((rev, i) => (
+                  <article className="review-card" key={i}>
+                    <p className="review-text">{tr(rev.text)}</p>
+                    <div className="review-author">
+                      <span className="review-name">{rev.name}</span>
+                      <span className="review-country">{tr(rev.country)}</span>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
         </>
       )}
 
@@ -219,6 +260,9 @@ export default function App() {
           <div className="contacts-wrap">
             <button className="contact-big cta-main" onClick={openTelegram}>
               {t('writeTg')}
+            </button>
+            <button className="contact-big wa-btn" onClick={openWhatsApp}>
+              {t('writeWa')}
             </button>
             <a className="contact-big" href={`tel:${CONTACTS.phoneRaw}`}>
               {t('call')} · {CONTACTS.phone}
