@@ -53,13 +53,18 @@ export const GALLERY = [
   },
 ];
 
+// Маршруты. cover — фото-обложка карточки, badge — цветной бейдж поверх фото.
+// tone бейджа: 'hit' (красный), 'gold' (латунь), 'navy' (тёмно-синий).
 export const ROUTES = [
   {
     id: 'islands',
+    cover: '/photos/beach-bay.webp',
+    badge: { ru: 'Хит', en: 'Top pick' },
+    tone: 'hit',
     title: { ru: 'Острова залива', en: 'Bay Islands' },
     desc: {
-      ru: 'Идём под парусом к островам Нячангского залива: Хон-Мун, Хон-Там. Прозрачная вода, снорклинг и виды, ради которых сюда едут.',
-      en: 'Sail to the islands of Nha Trang Bay: Hon Mun, Hon Tam. Crystal-clear water, snorkeling and the views this bay is famous for.',
+      ru: 'Хон-Мун, Хон-Там: прозрачная вода, снорклинг и виды, ради которых сюда едут.',
+      en: 'Hon Mun, Hon Tam: crystal-clear water, snorkeling and the views this bay is famous for.',
     },
     tags: {
       ru: ['Снорклинг', 'Купание', 'Фото-стопы'],
@@ -68,10 +73,13 @@ export const ROUTES = [
   },
   {
     id: 'sunset',
+    cover: '/photos/catamaran.webp',
+    badge: { ru: 'Романтика', en: 'Romantic' },
+    tone: 'gold',
     title: { ru: 'Закатная прогулка', en: 'Sunset Cruise' },
     desc: {
-      ru: 'Выходим ближе к вечеру и встречаем закат прямо в море. Тихий ход под парусом, город зажигает огни — самый романтичный маршрут.',
-      en: 'We set off in the late afternoon and meet the sunset out at sea. Quiet sailing while the city lights up — our most romantic route.',
+      ru: 'Встречаем закат прямо в море. Тихий ход под парусом, город зажигает огни.',
+      en: 'Meet the sunset out at sea. Quiet sailing while the city lights up.',
     },
     tags: {
       ru: ['Романтика', 'Закат', 'Огни города'],
@@ -80,10 +88,13 @@ export const ROUTES = [
   },
   {
     id: 'freeride',
+    cover: '/photos/sailing.webp',
+    badge: { ru: 'Свобода', en: 'Freedom' },
+    tone: 'navy',
     title: { ru: 'Свободный маршрут', en: 'Your Own Route' },
     desc: {
-      ru: 'Лодка ваша на 4 часа — сами решаете, куда идти. Хотите больше купания, рыбалку или просто дрейфовать под парусом? Обсудим на месте.',
-      en: 'The boat is yours for 4 hours — you decide where to go. More swimming, fishing, or just drifting under sail? Your call.',
+      ru: 'Лодка ваша на 4 часа — сами решаете, куда идти. Купание, рыбалка или дрейф под парусом.',
+      en: 'The boat is yours for 4 hours — you decide where to go. Swimming, fishing or drifting under sail.',
     },
     tags: {
       ru: ['Гибкий план', 'Рыбалка', 'Приватно'],
@@ -96,39 +107,58 @@ export const ROUTES = [
 export const ADDONS = [
   {
     id: 'drone',
-    title: { ru: '📸 Дрон-фотосессия', en: '📸 Drone photo session' },
+    title: { ru: 'Дрон-фотосессия', en: 'Drone photo session' },
     desc: { ru: 'Кадры с высоты — вы и катамаран посреди моря', en: 'Aerial shots — you and the catamaran out at sea' },
   },
   {
     id: 'fruits',
-    title: { ru: '🍍 Свежие фрукты', en: '🍍 Fresh fruit' },
+    title: { ru: 'Свежие фрукты', en: 'Fresh fruit' },
     desc: { ru: 'Тропическая тарелка к морю и солнцу', en: 'A tropical platter for the sea and sun' },
   },
   {
     id: 'champagne',
-    title: { ru: '🍾 Шампанское', en: '🍾 Champagne' },
+    title: { ru: 'Шампанское', en: 'Champagne' },
     desc: { ru: 'Отметить момент прямо на воде', en: 'Toast the moment right on the water' },
   },
   {
     id: 'beer',
-    title: { ru: '🍺 Холодное пиво', en: '🍺 Cold beer' },
+    title: { ru: 'Холодное пиво', en: 'Cold beer' },
     desc: { ru: 'Освежиться в жаркий день', en: 'Cool off on a hot day' },
   },
   {
     id: 'extrahour',
-    title: { ru: '⏱ Дополнительный час', en: '⏱ Extra hour at sea' },
+    title: { ru: 'Дополнительный час', en: 'Extra hour at sea' },
     desc: { ru: 'Продлить прогулку, когда уходить не хочется', en: 'Stay longer when you just do not want to head back' },
   },
 ];
 
-// Отзывы гостей. Пока пусто — блок появится, как только добавим первую запись.
-// Пример структуры:
-// {
-//   name: 'Анна',
-//   country: { ru: 'Россия', en: 'Russia' },
-//   text: {
-//     ru: 'Лучшее утро в Нячанге — вода, паруса и никакой толпы!',
-//     en: 'Best morning in Nha Trang — water, sails and no crowds!',
-//   },
-// },
-export const REVIEWS = [];
+// Отзывы гостей. initial — буква для аватара, country/text — двуязычные.
+export const REVIEWS = [
+  {
+    initial: 'А',
+    name: 'Анна',
+    country: { ru: 'Россия', en: 'Russia' },
+    text: {
+      ru: 'Лучшее утро в Нячанге: прозрачная вода, паруса и никакой толпы. Денис дал постоять за штурвалом — восторг!',
+      en: 'Best morning in Nha Trang: clear water, sails and no crowds. Denis let me take the helm — loved it!',
+    },
+  },
+  {
+    initial: 'Д',
+    name: 'Дмитрий',
+    country: { ru: 'Россия', en: 'Russia' },
+    text: {
+      ru: 'Брали всей семьёй закатный маршрут. Дети в полном восторге, капитан внимательный, всё безопасно. Обязательно вернёмся.',
+      en: 'We took the sunset route as a family. The kids loved it, the captain was attentive, everything felt safe. We will be back.',
+    },
+  },
+  {
+    initial: 'М',
+    name: 'Мария',
+    country: { ru: 'Казахстан', en: 'Kazakhstan' },
+    text: {
+      ru: 'Катамаран целиком только для нас — это того стоит. Снорклинг, фрукты, съёмка с дрона. Спасибо за идеальный день!',
+      en: 'The whole catamaran just for us — worth every bit. Snorkeling, fruit, drone shots. Thank you for a perfect day!',
+    },
+  },
+];

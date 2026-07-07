@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Концепт B — Ночной люкс-чартер · Катамаран в Нячанге</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Cormorant:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0E11; --surface:#16191D; --hair:#26292E;
+    --text:#F5F3EE; --text2:#8E9296;
+    --brass:#C9A227; --terra:#B5603F; --light:#F5F3EE;
+    --serif:'Fraunces',Georgia,serif; --disp:'Cormorant',Georgia,serif; --sans:'Inter',-apple-system,'Segoe UI',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#17191c;font-family:var(--sans);color:var(--text);
+    display:flex;flex-direction:column;align-items:center;gap:14px;padding:26px 12px 60px;-webkit-font-smoothing:antialiased}
+  .label{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#c3c0b8;font-weight:600}
+  .label b{color:var(--brass)}
+  .phone{width:390px;height:800px;position:relative;overflow:hidden;border-radius:34px;
+    background:var(--bg);box-shadow:0 30px 80px rgba(0,0,0,.6);border:1px solid #23252a}
+  .scroll{height:100%;overflow-y:auto;overflow-x:hidden;padding-bottom:150px}
+  .scroll::-webkit-scrollbar{width:0}
+  .kick{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text2);font-weight:600}
+  section{padding:28px 22px}
+  h2{font-family:var(--serif);font-weight:600;font-size:24px;line-height:1.15;margin:8px 0 4px}
+  .sub{color:var(--text2);font-size:14px;line-height:1.55}
+  /* HERO */
+  .hero{position:relative;height:500px;display:flex;flex-direction:column;justify-content:flex-end}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .hero .grad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,17,.05) 0%,rgba(11,14,17,0) 40%,rgba(11,14,17,.6) 72%,var(--bg) 100%)}
+  .hero .lang{position:absolute;top:18px;right:16px;z-index:2;font-size:13px;font-weight:600;color:#fff;
+    background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);padding:7px 14px;border-radius:999px;backdrop-filter:blur(8px);cursor:pointer}
+  .hero-txt{position:relative;z-index:2;padding:0 24px 30px}
+  .hero-txt .kick{color:var(--brass)}
+  .hero-txt h1{font-family:var(--disp);font-weight:600;font-size:44px;line-height:1.02;letter-spacing:.5px;margin:10px 0 10px;text-shadow:0 2px 24px rgba(0,0,0,.5)}
+  .hero-txt p{font-size:15px;color:#e7e3da;max-width:300px;line-height:1.45;text-shadow:0 1px 12px rgba(0,0,0,.6)}
+  /* ценовые блоки — текст с кикерами */
+  .pblock{padding:26px 22px 4px}
+  .pline{padding:18px 0;border-bottom:1px solid var(--hair)}
+  .pline:first-child{padding-top:6px}
+  .pline .kick{margin-bottom:9px}
+  .price-big{font-family:var(--serif);font-size:31px;font-weight:600;color:#fff;display:flex;align-items:baseline;gap:10px}
+  .price-big small{font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);font-weight:600}
+  .price-anchor{font-size:13.5px;color:var(--text2);line-height:1.5;margin-top:10px}
+  .price-anchor b{color:var(--brass);font-weight:600}
+  .cancel-txt{font-size:13.5px;color:var(--text2);line-height:1.55}
+  /* helm — крупный кинокадр */
+  .helm{position:relative;height:460px;display:flex;flex-direction:column;justify-content:flex-end;margin-top:10px}
+  .helm img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .helm .g{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,14,17,.1) 30%,rgba(11,14,17,.55) 60%,var(--bg) 100%)}
+  .helm .c{position:relative;z-index:2;padding:26px 24px}
+  .helm .kick{color:var(--brass)}
+  .helm h2{font-family:var(--disp);font-size:38px;font-weight:600;letter-spacing:.5px;color:#fff;margin:10px 0 12px;line-height:1.02}
+  .helm p{font-size:15px;color:#e7e3da;line-height:1.55;max-width:320px}
+  .helm .note{margin-top:16px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--brass);font-weight:600}
+  /* маршруты — вертикальные карточки */
+  .route{background:var(--surface);border:1px solid var(--hair);border-radius:14px;overflow:hidden;margin-bottom:14px}
+  .route .ph{position:relative}
+  .route .ph img{width:100%;height:230px;object-fit:cover;display:block}
+  .route .tag{position:absolute;left:14px;bottom:14px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    font-weight:600;color:#fff;background:rgba(11,14,17,.55);border:1px solid rgba(255,255,255,.2);padding:6px 12px;border-radius:999px;backdrop-filter:blur(6px)}
+  .route .tag.sunset{background:var(--terra);border-color:transparent}
+  .route .b{padding:16px 18px 18px}
+  .route h3{font-family:var(--serif);font-weight:600;font-size:20px;margin-bottom:7px}
+  .route p{font-size:13.5px;color:var(--text2);line-height:1.55}
+  .route .meta{margin-top:11px;font-size:12px;color:var(--text2);letter-spacing:.02em}
+  /* таймлайн */
+  .tl{list-style:none;margin-top:10px}
+  .tl li{display:flex;gap:16px;padding-bottom:24px;position:relative}
+  .tl li:not(:last-child)::before{content:"";position:absolute;left:19px;top:40px;bottom:0;width:1px;background:var(--hair)}
+  .tl .num{flex:none;width:39px;height:39px;border-radius:50%;border:1px solid var(--brass);color:var(--brass);
+    display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;letter-spacing:.05em}
+  .tl h4{font-size:15px;font-weight:600;margin-bottom:4px;margin-top:8px}
+  .tl p{font-size:13px;color:var(--text2);line-height:1.55}
+  /* included — чистый текст */
+  .inc{list-style:none;margin-top:6px}
+  .inc li{padding:14px 0;font-size:15px;border-bottom:1px solid var(--hair);color:#eceae3}
+  .inc li:last-child{border-bottom:0}
+  /* addons — капс-заголовки */
+  .addg{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:8px}
+  .add{background:var(--surface);border:1px solid var(--hair);border-radius:12px;padding:18px 15px;
+    font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:#e7e3da;transition:border-color .15s}
+  .add:hover{border-color:var(--brass)}
+  .add:last-child{grid-column:1 / -1}
+  .addnote{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--text2);margin-top:14px;text-align:center}
+  /* review — цитата-артобъект */
+  .revwrap{padding:34px 24px}
+  .rev-q{font-family:var(--serif);font-style:italic;font-weight:500;font-size:21px;line-height:1.5;color:#f0ede5}
+  .rev-who{margin-top:16px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--brass);font-weight:600}
+  .rev-demo{margin-top:20px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--text2);opacity:.6}
+  /* faq */
+  .faq details{border-bottom:1px solid var(--hair)}
+  .faq summary{list-style:none;cursor:pointer;padding:17px 0;font-size:14.5px;font-weight:500;display:flex;justify-content:space-between;gap:12px;align-items:center}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";color:var(--brass);font-size:20px;font-weight:400;flex:none}
+  .faq details[open] summary::after{content:"–"}
+  .faq p{font-size:13.5px;color:var(--text2);line-height:1.6;padding:0 0 17px}
+  /* contacts */
+  .cta{display:block;width:100%;text-align:center;border-radius:999px;padding:15px;font-size:15px;font-weight:600;
+    text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .1s}
+  .cta:active{transform:scale(.97)}
+  .cta.brass{background:var(--brass);color:#1c1607}
+  .cta.wa{background:transparent;color:#9fe6b8;border-color:#2f6d45}
+  .cta.txt{background:transparent;color:var(--text2);border:0;padding-top:18px;font-weight:500;font-size:13.5px}
+  .cta+.cta{margin-top:11px}
+  .handle{text-align:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text2);margin-top:16px}
+  /* sticky price bar — светлый остров */
+  .pricebar{position:absolute;left:14px;right:14px;bottom:70px;z-index:20;background:var(--light);color:#1a1c1e;
+    border-radius:16px;padding:12px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 16px 40px rgba(0,0,0,.5)}
+  .pricebar .p{font-family:var(--serif);font-size:21px;font-weight:600;color:#15181b;white-space:nowrap}
+  .pricebar .s{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#6a6d70;font-weight:600;margin-top:2px}
+  .pricebar .l{flex:1;min-width:0}
+  .pricebar a{flex:none;background:var(--brass);color:#1c1607;font-weight:700;font-size:13px;letter-spacing:.02em;
+    padding:12px 18px;border-radius:999px;text-decoration:none}
+  /* tabbar — почти невидимый */
+  .tabbar{position:absolute;left:0;right:0;bottom:0;z-index:20;height:62px;background:rgba(11,14,17,.95);
+    border-top:1px solid var(--hair);display:flex;backdrop-filter:blur(10px)}
+  .tabbar a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+    color:var(--text2);text-decoration:none;font-size:10px;letter-spacing:.03em;font-weight:500}
+  .tabbar a.on{color:var(--brass)}
+  .tabbar svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.5}
+</style>
+</head>
+<body>
+  <div class="label">Концепт <b>B</b> · «Ночной люкс-чартер» — смелое новое настроение</div>
+  <div class="phone">
+    <div class="scroll">
+      <!-- HERO -->
+      <header class="hero">
+        <img src="../public/photos/sailing.webp" alt="Катамаран на закате">
+        <div class="grad"></div>
+        <span class="lang">EN</span>
+        <div class="hero-txt">
+          <div class="kick">Private charter · Nha Trang</div>
+          <h1>Катамаран<br>на закате</h1>
+          <p>Вечер, когда ушли последние туристы. Только вы, море и штурвал в руках.</p>
+        </div>
+      </header>
+
+      <!-- ЦЕНА -->
+      <div class="pblock">
+        <div class="pline">
+          <div class="kick">Стоимость</div>
+          <div class="price-big">2 000 000 ₫ <small>за лодку · 4 часа</small></div>
+          <div class="price-anchor"><b>≈ 670 000 ₫ с человека</b> при 3 гостях — вся лодка ваша, а не место в групповой экскурсии.</div>
+        </div>
+        <div class="pline">
+          <div class="kick">Отмена</div>
+          <div class="cancel-txt">Бесплатная отмена за 24 часа — предоплата возвращается полностью. Испортилась погода — перенос или 100% возврат.</div>
+        </div>
+      </div>
+
+      <!-- ЗА ШТУРВАЛОМ -->
+      <div class="helm">
+        <img src="../public/photos/beach-captain.webp" alt="За штурвалом">
+        <div class="g"></div>
+        <div class="c">
+          <div class="kick">Наше главное отличие</div>
+          <h2>Штурвал —<br>в ваших руках</h2>
+          <p>Не просто прокатиться, а вести лодку самому. Капитан покажет, как держать курс под парусом. Опыт не нужен — почувствуете настоящий яхтинг.</p>
+          <div class="note">Уже входит в прогулку</div>
+        </div>
+      </div>
+
+      <!-- МАРШРУТЫ -->
+      <section>
+        <div class="kick">Один тариф — три сценария</div>
+        <h2>Маршруты</h2>
+        <p class="sub" style="margin-bottom:18px">Цена одна — выбирайте, как провести свои 4 часа.</p>
+
+        <article class="route">
+          <div class="ph"><img src="../public/photos/beach-bay.webp" alt="Острова залива"><span class="tag">Острова</span></div>
+          <div class="b">
+            <h3>Острова залива</h3>
+            <p>Под парусом к островам Хон-Мун и Хон-Там. Прозрачная вода, снорклинг и виды, ради которых сюда едут.</p>
+            <div class="meta">Снорклинг · Купание · Фото-стопы</div>
+          </div>
+        </article>
+        <article class="route">
+          <div class="ph"><img src="../public/photos/catamaran.webp" alt="Закатная прогулка"><span class="tag sunset">Закат</span></div>
+          <div class="b">
+            <h3>Закатная прогулка</h3>
+            <p>Выходим к вечеру и встречаем закат прямо в море. Тихий ход под парусом, город зажигает огни — самый романтичный маршрут.</p>
+            <div class="meta">Романтика · Закат · Огни города</div>
+          </div>
+        </article>
+        <article class="route">
+          <div class="ph"><img src="../public/photos/onboard.webp" alt="Свободный маршрут"><span class="tag">Свободно</span></div>
+          <div class="b">
+            <h3>Свободный маршрут</h3>
+            <p>Лодка ваша на 4 часа — сами решаете, куда идти. Больше купания, рыбалка или просто дрейф под парусом? Обсудим на месте.</p>
+            <div class="meta">Гибкий план · Рыбалка · Приватно</div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ТАЙМЛАЙН -->
+      <section style="padding-top:4px">
+        <div class="kick">Как проходит вечер</div>
+        <h2>Ваши 4 часа в море</h2>
+        <ol class="tl" style="margin-top:16px">
+          <li><span class="num">01</span><div><h4>Встреча и выход в море</h4><p>Забираем у набережной, короткий инструктаж, спасжилеты — и берём курс в открытое море.</p></div></li>
+          <li><span class="num">02</span><div><h4>Острова и снорклинг</h4><p>Идём к островам залива, встаём на стоянку — купание и снорклинг в прозрачной воде.</p></div></li>
+          <li><span class="num">03</span><div><h4>За штурвалом или отдых</h4><p>Хотите — становитесь за штурвал, научим держать курс. Хотите — просто загорайте с видом на бухту.</p></div></li>
+          <li><span class="num">04</span><div><h4>Закат и возвращение</h4><p>Встречаем закат прямо в море и не спеша идём назад, к огням города.</p></div></li>
+        </ol>
+      </section>
+
+      <!-- ЧТО ВХОДИТ -->
+      <section style="padding-top:4px">
+        <div class="kick">Без доплат</div>
+        <h2>Что входит</h2>
+        <ul class="inc">
+          <li>Катамаран целиком — без посторонних</li>
+          <li>Опытный капитан</li>
+          <li>Спасательные жилеты</li>
+          <li>Маски для снорклинга</li>
+          <li>Питьевая вода</li>
+        </ul>
+      </section>
+
+      <!-- ДОПРОДАЖИ -->
+      <section style="padding-top:4px">
+        <div class="kick">По желанию</div>
+        <h2>Сделайте вечер особенным</h2>
+        <div class="addg">
+          <div class="add">Фото с дрона</div>
+          <div class="add">Свежие фрукты</div>
+          <div class="add">Шампанское</div>
+          <div class="add">Холодное пиво</div>
+          <div class="add">Дополнительный час в море</div>
+        </div>
+        <div class="addnote">Цены подскажем при брони</div>
+      </section>
+
+      <!-- ОТЗЫВ -->
+      <div class="revwrap">
+        <div class="kick" style="margin-bottom:14px">Отзыв гостя</div>
+        <div class="rev-q">«Закат прямо посреди залива — и нам дали порулить. Вся лодка только для нас двоих. Лучший вечер за всю поездку.»</div>
+        <div class="rev-who">Анна и Павел · Россия</div>
+        <div class="rev-demo">Пример оформления — заменим реальными отзывами</div>
+      </div>
+
+      <!-- FAQ -->
+      <section style="padding-top:4px">
+        <div class="kick">Вопросы</div>
+        <h2 style="margin-bottom:10px">Частые вопросы</h2>
+        <div class="faq">
+          <details open><summary>Где посадка?</summary><p>Отправляемся с пирса на реке Кай. Точное место и время пришлём после брони — добираться удобно из любого отеля.</p></details>
+          <details><summary>Есть ли туалет на борту?</summary><p>Это спортивный катамаран — туалета на борту нет. Зато в море всегда можно окунуться и освежиться.</p></details>
+          <details><summary>На каком языке говорит капитан?</summary><p>По-русски и по-английски — объяснит, покажет и поддержит разговор.</p></details>
+          <details><summary>Будет ли качать?</summary><p>Зависит от сезона и погоды в день прогулки. Перед бронированием подскажем, каким ожидается море.</p></details>
+          <details><summary>А если погода испортится?</summary><p>Перенесём прогулку на другой день или вернём предоплату полностью (100%) — как вам удобнее.</p></details>
+          <details><summary>Как оплатить?</summary><p>Небольшая предоплата закрепляет за вами день и время. Оплата — наличными, переводом или криптовалютой. Отмена за 24 часа до выхода — предоплата возвращается полностью.</p></details>
+        </div>
+      </section>
+
+      <!-- КОНТАКТЫ -->
+      <section style="padding-top:4px">
+        <div class="kick">Бронирование</div>
+        <h2 style="margin-bottom:6px">Написать капитану</h2>
+        <p class="sub" style="margin-bottom:18px">Быстрее всего — в Telegram. Ответим в течение часа и подберём удобное время.</p>
+        <a class="cta brass" href="#">Написать в Telegram</a>
+        <a class="cta wa" href="#">Написать в WhatsApp</a>
+        <a class="cta txt" href="#">Позвонить · +84 77 298 1653</a>
+        <div class="handle">Telegram @DenisSokurenko</div>
+      </section>
+    </div>
+
+    <!-- STICKY ПЛАШКА ЦЕНЫ -->
+    <div class="pricebar">
+      <div class="l">
+        <div class="p">2 000 000 ₫</div>
+        <div class="s">за лодку · 4 часа</div>
+      </div>
+      <a href="#">Проверить даты</a>
+    </div>
+
+    <!-- ТАББАР -->
+    <nav class="tabbar">
+      <a class="on"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Главная</a>
+      <a><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M21 17l-5-5-8 7"/></svg>Фото</a>
+      <a><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 115 .5c0 1.5-2 2-2 3.5"/><circle cx="12" cy="17" r=".6" fill="currentColor" stroke="none"/></svg>Вопросы</a>
+      <a><svg viewBox="0 0 24 24"><path d="M4 5c0 8 7 15 15 15l1-4-5-2-2 2a12 12 0 01-5-5l2-2-2-5z"/></svg>Контакты</a>
+    </nav>
+  </div>
+</body>
+</html>

@@ -353,6 +353,48 @@ export function TripFlowScene() {
   );
 }
 
+/* ===== Морские иконки нового дизайна ===== */
+
+/* Логотип-якорь. color задаёт цвет линий (по умолчанию молочный). */
+export const AnchorIcon = ({ size = 24, color = '#F4F6F5' }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <circle cx="12" cy="5" r="2.2" stroke={color} strokeWidth="1.8" />
+    <path d="M12 7.5V20M6 12h12" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
+    <path d="M5 15c0 3.5 3 5.5 7 5.5s7-2 7-5.5" stroke={color} strokeWidth="1.8" strokeLinecap="round" fill="none" />
+    <path d="M5 15l-1.8-1.4M5 15l2.2-.6M19 15l1.8-1.4M19 15l-2.2-.6" stroke={color} strokeWidth="1.6" strokeLinecap="round" />
+  </svg>
+);
+
+/* Компас — маленькая роза ветров в hero */
+export const CompassIcon = () => (
+  <svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true">
+    <circle cx="20" cy="20" r="17" fill="none" stroke="#12365C" strokeWidth="1.6" />
+    <polygon points="20,6 23,20 20,34 17,20" fill="#C8402F" />
+    <polygon points="6,20 20,17 34,20 20,23" fill="#12365C" />
+    <circle cx="20" cy="20" r="2.4" fill="#F4F6F5" stroke="#12365C" strokeWidth="1.2" />
+  </svg>
+);
+
+/* Гирлянда сигнальных флажков поверх hero-фото */
+export const SignalFlags = () => (
+  <svg viewBox="0 0 400 40" className="hero-flags" aria-hidden="true">
+    <path d="M0 2 h400" stroke="rgba(255,255,255,.85)" strokeWidth="2" />
+    <polygon points="30,3 58,3 44,32" fill="#C8402F" />
+    <polygon points="90,3 118,3 104,32" fill="#F4F6F5" />
+    <polygon points="150,3 178,3 164,32" fill="#12365C" />
+    <polygon points="210,3 238,3 224,32" fill="#F5B72E" />
+    <polygon points="270,3 298,3 284,32" fill="#C8402F" />
+    <polygon points="330,3 358,3 344,32" fill="#F4F6F5" />
+  </svg>
+);
+
+/* Галочка в списке «Что входит» */
+export const CheckIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M4 12.5l5 5L20 6.5" stroke="#C8402F" strokeWidth="3" strokeLinecap="square" />
+  </svg>
+);
+
 /* ===== Иконки табов ===== */
 const ic = { fill: 'none', stroke: 'currentColor', strokeWidth: 1.9, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': 'true' };
 
