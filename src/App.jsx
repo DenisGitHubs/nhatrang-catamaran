@@ -4,13 +4,26 @@ import { CONTACTS, PRICING, ROUTES, ADDONS, REVIEWS, GALLERY, HERO_PHOTO, APP_LI
 import { STRINGS, detectLang } from './i18n.js';
 import {
   AnchorIcon, CompassIcon, SignalFlags, CheckIcon,
-  HomeIcon, PhotoIcon, FaqIcon, PhoneIcon, SailIcon,
+  HomeIcon, PhotoIcon, FaqIcon, PhoneIcon, SailIcon, ThemeIcon,
 } from './icons.jsx';
 
 const tg = window.Telegram?.WebApp;
 
-// Фирменный тёмно-синий (navy) — тот же, что --navy в index.css
+// Фирменный тёмно-синий (navy) — тот же, что --navy в index.css.
+// Полоса шапки (.masthead-bar) остаётся navy в обеих темах,
+// поэтому нативную шапку Telegram всегда красим в navy — без шва.
 const NAVY = '#12365C';
+// Ключ хранения выбранной темы
+const THEME_KEY = 'kat-theme';
+
+// Стартовая тема: сохранённая → тема Telegram → светлая
+function initTheme() {
+  try {
+    const saved = localStorage.getItem(THEME_KEY);
+    if (saved === 'light' || saved === 'dark') return saved;
+  } catch { /* localStorage может быть недоступен */ }
+  return tg?.colorScheme === 'dark' ? 'dark' : 'light';
+}
 
 // Капитанское фото для блока «Встаньте за штурвал»
 const HELM_PHOTO = '/photos/beach-captain.webp';
@@ -34,6 +47,7 @@ const TABS = [
 export default function App() {
   const [lang, setLang] = useState(detectLang);
   const [tab, setTab] = useState('home');
+  const [theme, setTheme] = useState(initTheme);
   const other = lang === 'ru' ? 'en' : 'ru';
   // Локализация: tr достаёт нужный язык из объекта {ru, en}, t — то же для строк STRINGS.
   // Оба с запасным вариантом, чтобы отсутствующий ключ/язык не ронял всё приложение.
@@ -44,8 +58,15 @@ export default function App() {
     if (!tg) return;
     tg.ready();
     tg.expand();
-    tg.setHeaderColor?.(NAVY);
   }, []);
+
+  // Применяем тему: атрибут на <html>, сохранение и цвет шапки Telegram
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    try { localStorage.setItem(THEME_KEY, theme); } catch { /* нет доступа — не критично */ }
+    // Шапка приложения (navy-полоса) одинакова в обеих темах → шапку Telegram всегда красим navy
+    try { tg?.setHeaderColor?.(NAVY); } catch { /* старый клиент может не поддерживать — не критично */ }
+  }, [theme]);
 
   // Держим <html lang> в соответствии с языком — для скринридеров и авто-переводчиков
   useEffect(() => {
@@ -88,6 +109,16 @@ export default function App() {
     </button>
   );
 
+  const themeSwitch = (
+    <button
+      className="theme-switch"
+      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+      aria-label={theme === 'dark' ? t('themeToLight') : t('themeToDark')}
+    >
+      <ThemeIcon dark={theme === 'dark'} />
+    </button>
+  );
+
   // Заголовок-делитель секции: H2 + пунктирная линия справа
   const sectionHead = (title, sub) => (
     <>
@@ -105,10 +136,13 @@ export default function App() {
       <header className="masthead">
         <div className="masthead-bar">
           <div className="brand">
-            <AnchorIcon size={24} />
+            <AnchorIcon size={22} />
             <span className="brand-name">{t('brandName')}</span>
           </div>
-          {langSwitch}
+          <div className="masthead-actions">
+            {themeSwitch}
+            {langSwitch}
+          </div>
         </div>
         <div className="masthead-strip" />
       </header>

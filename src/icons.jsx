@@ -365,13 +365,15 @@ export const AnchorIcon = ({ size = 24, color = '#F4F6F5' }) => (
   </svg>
 );
 
-/* Компас — маленькая роза ветров в hero */
+/* Компас — маленькая роза ветров в hero.
+   Тёмно-синие штрихи через currentColor (= var(--head)), чтобы не пропадать на тёмной карточке;
+   стрелка на север остаётся фирменной красной. */
 export const CompassIcon = () => (
-  <svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true">
-    <circle cx="20" cy="20" r="17" fill="none" stroke="#12365C" strokeWidth="1.6" />
+  <svg className="compass" width="34" height="34" viewBox="0 0 40 40" aria-hidden="true">
+    <circle cx="20" cy="20" r="17" fill="none" stroke="currentColor" strokeWidth="1.6" />
     <polygon points="20,6 23,20 20,34 17,20" fill="#C8402F" />
-    <polygon points="6,20 20,17 34,20 20,23" fill="#12365C" />
-    <circle cx="20" cy="20" r="2.4" fill="#F4F6F5" stroke="#12365C" strokeWidth="1.2" />
+    <polygon points="6,20 20,17 34,20 20,23" fill="currentColor" />
+    <circle cx="20" cy="20" r="2.4" fill="var(--card)" stroke="currentColor" strokeWidth="1.2" />
   </svg>
 );
 
@@ -386,6 +388,22 @@ export const SignalFlags = () => (
     <polygon points="270,3 298,3 284,32" fill="#C8402F" />
     <polygon points="330,3 358,3 344,32" fill="#F4F6F5" />
   </svg>
+);
+
+/* Переключатель темы: луна (в светлой) / солнце (в тёмной). dark — текущая тема тёмная */
+export const ThemeIcon = ({ dark = false, size = 16 }) => (
+  dark ? (
+    /* солнце — вернуться к светлой */
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="4.2" />
+      <path d="M12 2.5v2.4M12 19.1v2.4M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7" />
+    </svg>
+  ) : (
+    /* луна — перейти в тёмную */
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M20 14.2A8 8 0 0 1 9.8 4 7 7 0 1 0 20 14.2z" />
+    </svg>
+  )
 );
 
 /* Галочка в списке «Что входит» */

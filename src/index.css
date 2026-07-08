@@ -1,18 +1,44 @@
 :root {
-  --navy: #12365C;        /* тёмно-синий, основной */
-  --ink: #16324A;         /* текст */
+  --navy: #12365C;        /* тёмно-синий, основной (бренд, заливки) */
+  --ink: #16324A;         /* основной текст */
   --milk: #F4F6F5;        /* молочный фон контейнера */
   --sub: #5C7185;         /* вторичный текст */
   --cta: #C8402F;         /* красный CTA */
   --cta-soft: #FBE7E2;    /* мягкий фон для акцентной плашки */
   --brass: #F5B72E;       /* латунь */
-  --lightblue: #E9F0F5;   /* светло-голубой */
+  --lightblue: #E9F0F5;   /* светло-голубой (чипы, активный таб) */
   --page: #0E2A47;        /* внешний фон страницы */
-  --card: #ffffff;
+  --card: #ffffff;        /* фон карточек */
+  --stripe: #F4F6F5;      /* светлая полоса «тельняшки» */
+  --head: #12365C;        /* цвет заголовков (в тёмной теме светлеет) */
+  --on-navy: #F4F6F5;     /* светлый текст/элементы на navy и красных плашках */
+  --line: #CFDBE4;        /* тонкие разделители/границы */
+  --tabbar-bg: rgba(255, 255, 255, 0.96); /* фон нижнего таб-бара */
   --shadow-sm: 0 6px 16px rgba(18, 54, 92, 0.07);
   --shadow-md: 0 12px 28px rgba(18, 54, 92, 0.12);
   --shadow-lg: 0 16px 34px rgba(18, 54, 92, 0.2);
   --oswald: 'Oswald', sans-serif;
+}
+
+/* ===== Тёмная тема: переопределяем те же переменные ===== */
+:root[data-theme="dark"] {
+  --page: #05131f;
+  --milk: #0F2233;
+  --ink: #E8EEF3;
+  --sub: #93A7B8;
+  --cta: #E24A38;
+  --cta-soft: #2A1A17;
+  --brass: #F5B72E;
+  --lightblue: #1D3A52;
+  --card: #14293B;
+  --navy: #12365C;        /* оставляем — шапка и акценты */
+  --stripe: #24415C;      /* приглушённая светлая полоса, чтобы «тельняшка» читалась */
+  --head: #E8EEF3;        /* заголовки светлые */
+  --line: #294763;
+  --tabbar-bg: rgba(15, 34, 51, 0.94);
+  --shadow-sm: 0 6px 16px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 12px 28px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 34px rgba(0, 0, 0, 0.5);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -41,16 +67,18 @@ body {
 }
 
 /* полоски «тельняшки» */
-.stripe-bg,
 .masthead,
 .cta-sec {
-  background: repeating-linear-gradient(180deg, var(--navy) 0, var(--navy) 14px, var(--milk) 14px, var(--milk) 28px);
+  background: repeating-linear-gradient(180deg, var(--navy) 0, var(--navy) 14px, var(--stripe) 14px, var(--stripe) 28px);
 }
+
+/* компас в hero берёт цвет заголовков (темизируется через --head) */
+.compass { color: var(--head); }
 
 /* ===== Шапка-тельняшка ===== */
 .masthead-bar {
   background: var(--navy);
-  padding: 16px 20px;
+  padding: 9px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -58,19 +86,22 @@ body {
 .brand { display: flex; align-items: center; gap: 10px; }
 .brand-name {
   font-family: var(--oswald);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--milk);
+  color: var(--on-navy);
 }
-.masthead-strip { height: 42px; }
+.masthead-strip { height: 22px; }
+
+/* переключатели языка и темы справа в шапке */
+.masthead-actions { display: flex; align-items: center; gap: 8px; }
 
 .lang-switch {
   font-size: 11.5px;
   font-weight: 800;
   color: var(--navy);
-  background: var(--milk);
+  background: var(--on-navy);
   border: none;
   border-radius: 999px;
   padding: 6px 13px;
@@ -78,10 +109,26 @@ body {
   letter-spacing: 0.02em;
 }
 
+/* компактная кнопка-иконка луна/солнце */
+.theme-switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: var(--on-navy);
+  color: var(--navy);
+  cursor: pointer;
+}
+.theme-switch svg { display: block; }
+
 /* ===== Hero ===== */
-.hero { padding: 0 16px; margin-top: -14px; position: relative; }
+.hero { padding: 0 16px; margin-top: 8px; position: relative; }
 .hero-frame {
-  background: #fff;
+  background: var(--card);
   border-radius: 26px;
   box-shadow: var(--shadow-lg);
   padding: 10px;
@@ -116,7 +163,7 @@ body {
   font-size: 34px;
   line-height: 1.12;
   text-transform: uppercase;
-  color: var(--navy);
+  color: var(--head);
 }
 .hero-sub {
   margin: 10px 4px 0;
@@ -132,7 +179,7 @@ body {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--navy);
+  color: var(--head);
   background: var(--lightblue);
   border-radius: 999px;
   padding: 7px 14px;
@@ -143,7 +190,7 @@ body {
 .price-sec { padding: 26px 16px 0; }
 .price-card {
   background: var(--navy);
-  color: var(--milk);
+  color: var(--on-navy);
   padding: 22px;
   border-radius: 22px;
   box-shadow: var(--shadow-lg);
@@ -198,9 +245,9 @@ body {
   display: block;
   width: 100%;
   cursor: pointer;
-  background: #fff;
-  color: var(--navy);
-  border: 1.5px solid #C4D2DD;
+  background: var(--card);
+  color: var(--head);
+  border: 1.5px solid var(--line);
   border-radius: 14px;
   font-family: var(--oswald);
   font-weight: 600;
@@ -225,7 +272,7 @@ body {
   font-weight: 600;
   font-size: 24px;
   text-transform: uppercase;
-  color: var(--navy);
+  color: var(--head);
   overflow-wrap: anywhere;
 }
 .sec-rule {
@@ -238,7 +285,7 @@ body {
 /* ===== Маршруты ===== */
 .routes-grid { display: grid; gap: 18px; margin-top: 18px; }
 .route-card {
-  background: #fff;
+  background: var(--card);
   border-radius: 22px;
   overflow: hidden;
   box-shadow: var(--shadow-md);
@@ -268,14 +315,14 @@ body {
   font-weight: 600;
   font-size: 19px;
   text-transform: uppercase;
-  color: var(--navy);
+  color: var(--head);
 }
 .route-body p { margin: 7px 0 0; color: var(--sub); font-size: 13px; line-height: 1.5; }
 .route-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 11px; }
 .route-tag {
   font-size: 11.5px;
   font-weight: 700;
-  color: var(--navy);
+  color: var(--head);
   background: var(--lightblue);
   border-radius: 999px;
   padding: 5px 12px;
@@ -284,12 +331,12 @@ body {
 /* ===== Судовой журнал ===== */
 .log-card {
   margin-top: 18px;
-  background: #fff;
+  background: var(--card);
   border-radius: 20px;
   padding: 4px 20px;
   box-shadow: var(--shadow-md);
 }
-.log-row { display: flex; gap: 16px; padding: 15px 0; border-bottom: 1px dashed #C9D6E0; }
+.log-row { display: flex; gap: 16px; padding: 15px 0; border-bottom: 1px dashed var(--line); }
 .log-row:last-child { border-bottom: none; }
 .log-time {
   flex: none;
@@ -307,14 +354,14 @@ body {
   font-weight: 600;
   font-size: 15.5px;
   text-transform: uppercase;
-  color: var(--navy);
+  color: var(--head);
 }
 .log-body p { margin: 4px 0 0; color: var(--sub); font-size: 13px; line-height: 1.5; }
 
 /* ===== Встаньте за штурвал ===== */
 .helm-card {
   background: var(--navy);
-  color: var(--milk);
+  color: var(--on-navy);
   overflow: hidden;
   position: relative;
   border-radius: 24px;
@@ -352,7 +399,7 @@ body {
   display: flex;
   gap: 12px;
   align-items: center;
-  background: #fff;
+  background: var(--card);
   border-radius: 14px;
   padding: 13px 16px;
   font-size: 14px;
@@ -364,13 +411,13 @@ body {
 
 /* ===== Провизия и бонусы ===== */
 .addons-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
-.addon-card { background: #fff; border-radius: 16px; padding: 14px 15px; box-shadow: var(--shadow-sm); }
+.addon-card { background: var(--card); border-radius: 16px; padding: 14px 15px; box-shadow: var(--shadow-sm); }
 .addon-title {
   font-family: var(--oswald);
   font-weight: 600;
   font-size: 14px;
   text-transform: uppercase;
-  color: var(--navy);
+  color: var(--head);
 }
 .addon-desc { margin-top: 4px; color: var(--sub); font-size: 12px; line-height: 1.45; }
 
@@ -386,17 +433,17 @@ body {
   flex: none;
   width: 280px;
   scroll-snap-align: start;
-  background: #fff;
+  background: var(--card);
   border-radius: 20px;
-  box-shadow: 0 12px 28px rgba(18, 54, 92, 0.1);
+  box-shadow: var(--shadow-md);
   padding: 20px 20px 18px;
   display: flex;
   flex-direction: column;
 }
 .review-top { display: flex; justify-content: space-between; align-items: center; }
 .review-stars { color: var(--brass); font-size: 15px; letter-spacing: 1px; }
-.review-quote { font-family: var(--oswald); font-size: 42px; line-height: 0.6; color: #E3ECF3; }
-.review-text { margin: 12px 0 0; color: #33475A; font-size: 13.5px; line-height: 1.55; flex: 1; }
+.review-quote { font-family: var(--oswald); font-size: 42px; line-height: 0.6; color: var(--lightblue); }
+.review-text { margin: 12px 0 0; color: var(--ink); font-size: 13.5px; line-height: 1.55; flex: 1; }
 .review-author { display: flex; align-items: center; gap: 11px; margin-top: 16px; }
 .review-avatar {
   flex: none;
@@ -418,9 +465,9 @@ body {
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: var(--navy);
+  color: var(--head);
 }
-.review-country { color: #8FA3B3; font-size: 11.5px; margin-top: 1px; }
+.review-country { color: var(--sub); font-size: 11.5px; margin-top: 1px; }
 
 /* ===== Финальный CTA ===== */
 .cta-sec { margin-top: 40px; padding: 12px 0; }
@@ -440,7 +487,7 @@ body {
   margin-top: 18px;
   border: none;
   cursor: pointer;
-  background: var(--milk);
+  background: var(--on-navy);
   color: var(--cta);
   font-family: var(--oswald);
   font-weight: 600;
@@ -456,13 +503,13 @@ body {
 
 /* ===== Галерея ===== */
 .gallery-grid { display: grid; gap: 18px; margin-top: 18px; }
-.gallery-item { margin: 0; background: #fff; border-radius: 18px; box-shadow: var(--shadow-md); padding: 9px; }
+.gallery-item { margin: 0; background: var(--card); border-radius: 18px; box-shadow: var(--shadow-md); padding: 9px; }
 .gallery-item img { width: 100%; display: block; border-radius: 10px; }
 .gallery-item figcaption { padding: 10px 4px 2px; font-size: 12.5px; font-weight: 600; color: var(--sub); }
 
 /* ===== FAQ ===== */
 .faq-list { display: grid; gap: 10px; margin-top: 18px; }
-.faq-item { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-sm); }
+.faq-item { background: var(--card); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-sm); }
 .faq-item summary {
   display: flex;
   justify-content: space-between;
@@ -472,7 +519,7 @@ body {
   cursor: pointer;
   font-size: 14.5px;
   font-weight: 700;
-  color: var(--navy);
+  color: var(--head);
   list-style: none;
 }
 .faq-item summary::-webkit-details-marker { display: none; }
@@ -483,11 +530,11 @@ body {
 /* ===== Контакты ===== */
 .contacts-wrap { display: grid; gap: 10px; margin-top: 18px; }
 .contact-handle { margin: 16px 0 0; text-align: center; color: var(--sub); font-size: 13px; }
-.contact-note { margin: 6px 0 0; text-align: center; color: #8FA3B3; font-size: 12px; }
+.contact-note { margin: 6px 0 0; text-align: center; color: var(--sub); font-size: 12px; }
 
 /* ===== QR + Поделиться ===== */
 .qr-block { margin-top: 22px; display: flex; flex-direction: column; align-items: center; text-align: center; }
-.qr-title { font-size: 15px; font-weight: 700; color: var(--navy); }
+.qr-title { font-size: 15px; font-weight: 700; color: var(--head); }
 .qr-frame { margin-top: 12px; background: #fff; padding: 14px; border-radius: 16px; box-shadow: var(--shadow-md); line-height: 0; }
 .qr-frame svg { display: block; width: 168px; height: 168px; }
 .qr-hint { margin-top: 10px; font-size: 13px; color: var(--sub); max-width: 260px; }
@@ -503,9 +550,9 @@ body {
   max-width: 440px;
   display: flex;
   align-items: flex-end;
-  background: rgba(255, 255, 255, 0.96);
+  background: var(--tabbar-bg);
   backdrop-filter: blur(10px);
-  border-top: 1px solid #DCE5EC;
+  border-top: 1px solid var(--line);
   border-radius: 18px 18px 0 0;
   padding: 8px 6px calc(8px + env(safe-area-inset-bottom));
   box-shadow: 0 -6px 24px rgba(18, 54, 92, 0.12);
@@ -527,7 +574,7 @@ body {
 }
 .tab-icon { line-height: 0; }
 .tab-label { font-size: 11px; font-weight: 600; }
-.tab.active { color: var(--navy); background: var(--lightblue); font-weight: 700; }
+.tab.active { color: var(--head); background: var(--lightblue); font-weight: 700; }
 .tab:active { transform: scale(0.95); }
 
 .tab-book {
@@ -551,7 +598,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid #fff;
+  border: 3px solid var(--milk);
   line-height: 0;
   transition: transform 0.12s ease;
 }

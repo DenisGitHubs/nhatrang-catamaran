@@ -172,6 +172,9 @@ export const STRINGS = {
     en: 'Message Denis — he replies within an hour and helps you pick the perfect time',
   },
   ctaBtn: { ru: 'Забронировать в Telegram', en: 'Book on Telegram' },
+  // Aria-подписи переключателя темы (текст = тема, на которую переключимся)
+  themeToDark: { ru: 'Тёмная тема', en: 'Dark theme' },
+  themeToLight: { ru: 'Светлая тема', en: 'Light theme' },
   tabHome: { ru: 'Главная', en: 'Home' },
   tabGallery: { ru: 'Фото', en: 'Photos' },
   tabFaq: { ru: 'Вопросы', en: 'FAQ' },
