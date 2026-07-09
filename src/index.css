@@ -604,3 +604,182 @@ body {
 }
 .tab-book-label { font-size: 11px; font-weight: 700; color: var(--cta); }
 .tab-book:active .tab-book-btn { transform: scale(0.93); }
+
+/* ===== Динамические звёзды в карточке отзыва ===== */
+.review-stars .star.on { color: var(--brass); }
+.review-stars .star.off { color: var(--line); }
+
+/* ===== Сводный рейтинг над лентой отзывов ===== */
+.reviews-aggregate {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-top: 10px;
+  font-family: var(--oswald);
+}
+.reviews-aggregate .agg-score { font-size: 22px; font-weight: 600; color: var(--head); }
+.reviews-aggregate .agg-star { font-size: 16px; color: var(--brass); }
+.reviews-aggregate .agg-count { font-size: 13px; font-weight: 600; letter-spacing: 0.02em; color: var(--sub); }
+
+/* ===== Правый блок карточки: бейдж языка + кавычка ===== */
+.review-top-right { display: flex; align-items: center; gap: 8px; }
+.review-lang {
+  font-family: var(--oswald);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  color: var(--sub);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 3px 6px;
+}
+
+/* ===== Кнопка «Оставить отзыв» ===== */
+.review-add-wrap { text-align: center; padding: 16px 16px 0; }
+.review-add-btn {
+  display: inline-flex;
+  width: auto;
+  align-items: center;
+  gap: 9px;
+}
+
+/* ===== Модалка отзыва ===== */
+.review-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(6, 20, 34, 0.55);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  animation: review-fade 0.18s ease;
+}
+@keyframes review-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes review-rise { from { transform: translateY(26px); } to { transform: translateY(0); } }
+
+.review-sheet {
+  width: 100%;
+  max-width: 440px;
+  background: var(--milk);
+  color: var(--ink);
+  border-radius: 22px 22px 0 0;
+  box-shadow: 0 -16px 40px rgba(0, 0, 0, 0.35);
+  /* высоту считаем от стабильной высоты Telegram (не дёргается при клавиатуре) */
+  max-height: min(92vh, var(--vsh, 92vh));
+  overflow-y: auto;
+  /* нижний отступ = safe-area от Telegram или CSS env (берём больший, без двойного счёта) */
+  padding: 8px 20px calc(20px + max(var(--safe-bottom, 0px), env(safe-area-inset-bottom, 0px)));
+  animation: review-rise 0.24s ease;
+}
+@media (min-width: 480px) {
+  .review-overlay { align-items: center; }
+  .review-sheet {
+    border-radius: 22px;
+    margin: 0 16px;
+    max-height: min(88vh, var(--vsh, 88vh));
+    animation: review-fade 0.2s ease;
+  }
+}
+
+.review-sheet-grab {
+  width: 40px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--line);
+  margin: 6px auto 12px;
+}
+@media (min-width: 480px) { .review-sheet-grab { display: none; } }
+
+.review-sheet-head h2 {
+  margin: 0;
+  font-family: var(--oswald);
+  font-weight: 600;
+  font-size: 22px;
+  text-transform: uppercase;
+  color: var(--head);
+}
+.review-sheet-head p { margin: 8px 0 0; color: var(--sub); font-size: 13.5px; line-height: 1.5; }
+
+.review-field { margin-top: 18px; }
+.review-field > label {
+  display: block;
+  margin-bottom: 8px;
+  font-family: var(--oswald);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--head);
+}
+.review-input,
+.review-textarea {
+  width: 100%;
+  background: var(--card);
+  color: var(--ink);
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-family: inherit;
+  font-size: 14.5px;
+  line-height: 1.5;
+  transition: border-color 0.15s ease;
+}
+.review-input:focus,
+.review-textarea:focus { outline: none; border-color: var(--navy); }
+.review-textarea { min-height: 96px; resize: vertical; }
+.review-input::placeholder,
+.review-textarea::placeholder { color: var(--sub); opacity: 0.7; }
+.review-field.has-error .review-input,
+.review-field.has-error .review-textarea { border-color: var(--cta); }
+
+.review-error { margin-top: 6px; color: var(--cta); font-size: 12.5px; line-height: 1.4; }
+.review-counter { margin-top: 6px; text-align: right; color: var(--sub); font-size: 12px; }
+.review-counter.warn { color: var(--cta); font-weight: 700; }
+
+/* интерактивные звёзды ввода */
+.star-input { display: flex; gap: 8px; }
+.star-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  font-size: 32px;
+  line-height: 1;
+  color: var(--line);
+  transition: transform 0.1s ease, color 0.12s ease;
+}
+.star-btn.on { color: var(--brass); }
+.star-btn:active { transform: scale(0.9); }
+
+.review-form-error {
+  margin-top: 16px;
+  background: var(--cta-soft);
+  color: var(--cta);
+  border-radius: 12px;
+  padding: 11px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.review-actions { display: flex; gap: 10px; margin-top: 22px; }
+.review-actions .btn-outline { flex: 1; }
+.review-actions .btn-cta { flex: 1.4; margin-top: 0; }
+.review-actions button:disabled { opacity: 0.6; cursor: default; }
+
+/* экран успеха внутри модалки */
+.review-success { text-align: center; padding: 20px 6px 6px; }
+.review-success-icon { font-size: 40px; line-height: 1; color: var(--brass); }
+.review-success h3 {
+  margin: 12px 0 0;
+  font-family: var(--oswald);
+  font-weight: 600;
+  font-size: 22px;
+  text-transform: uppercase;
+  color: var(--head);
+}
+.review-success p { margin: 10px auto 0; max-width: 300px; color: var(--sub); font-size: 13.5px; line-height: 1.55; }
+.review-success .btn-cta { margin-top: 20px; }

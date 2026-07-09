@@ -2,12 +2,37 @@ import { useEffect, useState } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import { CONTACTS, PRICING, ROUTES, ADDONS, REVIEWS, GALLERY, HERO_PHOTO, APP_LINK } from './data.js';
 import { STRINGS, detectLang } from './i18n.js';
+import { isSupabaseReady } from './lib/supabase.js';
+import { fetchReviews, fetchStats, normalizeDbReview, normalizeStaticReview } from './lib/reviews.js';
+import ReviewModal from './ReviewModal.jsx';
 import {
   AnchorIcon, CompassIcon, SignalFlags, CheckIcon,
   HomeIcon, PhotoIcon, FaqIcon, PhoneIcon, SailIcon, ThemeIcon,
 } from './icons.jsx';
 
 const tg = window.Telegram?.WebApp;
+
+// Звёзды рейтинга: value заполненных из 5 (латунь), остальные приглушённые.
+function Stars({ value = 5 }) {
+  const v = Math.max(0, Math.min(5, Math.round(Number(value) || 0)));
+  return (
+    <span className="review-stars" role="img" aria-label={`${v}/5`}>
+      {[1, 2, 3, 4, 5].map((n) => (
+        <span key={n} className={n <= v ? 'star on' : 'star off'} aria-hidden="true">★</span>
+      ))}
+    </span>
+  );
+}
+
+// Плюрализация счётчика отзывов: RU «отзыв/отзыва/отзывов», EN «review/reviews».
+function reviewWord(n, lang) {
+  if (lang === 'en') return n === 1 ? 'review' : 'reviews';
+  const d10 = n % 10;
+  const d100 = n % 100;
+  if (d10 === 1 && d100 !== 11) return 'отзыв';
+  if (d10 >= 2 && d10 <= 4 && (d100 < 10 || d100 >= 20)) return 'отзыва';
+  return 'отзывов';
+}
 
 // Фирменный тёмно-синий (navy) — тот же, что --navy в index.css.
 // Полоса шапки (.masthead-bar) остаётся navy в обеих темах,
@@ -48,17 +73,55 @@ export default function App() {
   const [lang, setLang] = useState(detectLang);
   const [tab, setTab] = useState('home');
   const [theme, setTheme] = useState(initTheme);
+  // Отзывы (нормализованный массив), режим источника, сводная статистика и модалка.
+  // Без бэка стартуем сразу со статических отзывов из data.js — приложение не ждёт сеть.
+  const [reviews, setReviews] = useState(() =>
+    isSupabaseReady ? [] : REVIEWS.map((r, i) => normalizeStaticReview(r, lang, i))
+  );
+  const [reviewsMode, setReviewsMode] = useState(() => (isSupabaseReady ? null : 'static'));
+  const [stats, setStats] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
   const other = lang === 'ru' ? 'en' : 'ru';
   // Локализация: tr достаёт нужный язык из объекта {ru, en}, t — то же для строк STRINGS.
   // Оба с запасным вариантом, чтобы отсутствующий ключ/язык не ронял всё приложение.
   const tr = (obj) => obj?.[lang] ?? obj?.en ?? '';
   const t = (key) => tr(STRINGS[key]) || key;
 
+  // Кнопка «Оставить отзыв» — только когда есть куда отправлять: бэк готов И мы внутри Telegram (есть initData).
+  const canReview = isSupabaseReady && Boolean(tg?.initData);
+
   useEffect(() => {
     if (!tg) return;
     tg.ready();
     tg.expand();
   }, []);
+
+  // Загрузка отзывов один раз при монтировании (только если есть бэк).
+  useEffect(() => {
+    if (!isSupabaseReady) return; // без бэка уже показаны статические отзывы
+    let alive = true;
+    (async () => {
+      const rows = await fetchReviews();
+      if (!alive) return;
+      if (rows && rows.length) {
+        setReviews(rows.map(normalizeDbReview));
+        setReviewsMode('db');
+        const s = await fetchStats();
+        if (alive && s && Number(s.count) > 0) setStats(s);
+      } else {
+        // Бэк есть, но отзывов нет/ошибка → фолбэк на статические
+        setReviewsMode('static');
+      }
+    })();
+    return () => { alive = false; };
+  }, []);
+
+  // Статические отзывы двуязычны — при смене языка пересобираем их (отзывы из БД языконезависимы).
+  useEffect(() => {
+    if (reviewsMode === 'static') {
+      setReviews(REVIEWS.map((r, i) => normalizeStaticReview(r, lang, i)));
+    }
+  }, [lang, reviewsMode]);
 
   // Применяем тему: атрибут на <html>, сохранение и цвет шапки Telegram
   useEffect(() => {
@@ -268,27 +331,53 @@ export default function App() {
           </section>
 
           {/* Отзывы гостей */}
-          {REVIEWS.length > 0 && (
+          {reviews.length > 0 && (
             <section className="section section-flush">
               <div className="sec-inset">{sectionHead(t('reviewsTitle'), t('reviewsSubtitle'))}</div>
+
+              {/* Сводный рейтинг — только с реальным бэком и от 5 отзывов */}
+              {stats && stats.count >= 5 && (
+                <div className="sec-inset reviews-aggregate">
+                  <span className="agg-score">{Number(stats.avg).toFixed(1)}</span>
+                  <span className="agg-star" aria-hidden="true">★</span>
+                  <span className="agg-count">· {stats.count} {reviewWord(stats.count, lang)}</span>
+                </div>
+              )}
+
               <div className="reviews-scroll">
-                {REVIEWS.map((rev) => (
-                  <article className="review-card" key={rev.name}>
+                {reviews.map((rev) => (
+                  <article className="review-card" key={rev.id}>
                     <div className="review-top">
-                      <span className="review-stars">★★★★★</span>
-                      <span className="review-quote">”</span>
+                      <Stars value={rev.rating} />
+                      <div className="review-top-right">
+                        {/* Бейдж языка, если отзыв не на языке интерфейса */}
+                        {rev.lang && rev.lang !== lang && (
+                          <span className="review-lang">{rev.lang.toUpperCase()}</span>
+                        )}
+                        <span className="review-quote">”</span>
+                      </div>
                     </div>
-                    <p className="review-text">{tr(rev.text)}</p>
+                    <p className="review-text">{rev.text}</p>
                     <div className="review-author">
                       <span className="review-avatar">{rev.initial}</span>
                       <div>
                         <div className="review-name">{rev.name}</div>
-                        <div className="review-country">{tr(rev.country)}</div>
+                        {rev.country && <div className="review-country">{rev.country}</div>}
                       </div>
                     </div>
                   </article>
                 ))}
               </div>
+
+              {/* Кнопка «Оставить отзыв» — гейт: бэк готов И есть initData */}
+              {canReview && (
+                <div className="review-add-wrap">
+                  <button className="btn-outline review-add-btn" onClick={() => setModalOpen(true)}>
+                    <AnchorIcon size={16} color="currentColor" />
+                    {t('addReviewBtn')}
+                  </button>
+                </div>
+              )}
             </section>
           )}
 
@@ -376,6 +465,11 @@ export default function App() {
           )
         )}
       </nav>
+
+      {/* Модалка «Оставить отзыв» — двуязычная, обе темы, монтируется поверх приложения */}
+      {modalOpen && (
+        <ReviewModal lang={lang} t={t} onClose={() => setModalOpen(false)} />
+      )}
     </div>
   );
 }

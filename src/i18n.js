@@ -179,6 +179,63 @@ export const STRINGS = {
   tabGallery: { ru: 'Фото', en: 'Photos' },
   tabFaq: { ru: 'Вопросы', en: 'FAQ' },
   tabContacts: { ru: 'Контакты', en: 'Contacts' },
+
+  // ===== Отзывы: кнопка, модалка, валидация =====
+  addReviewBtn: { ru: 'Оставить отзыв', en: 'Leave a review' },
+  reviewModalTitle: { ru: 'Как прошла прогулка?', en: 'How was your trip?' },
+  reviewModalSubtitle: {
+    ru: 'Расскажите другим гостям о морской прогулке — это займёт минуту',
+    en: 'Tell other guests about your sea trip — it takes a minute',
+  },
+  reviewFieldRating: { ru: 'Оцените прогулку', en: 'Rate your trip' },
+  reviewFieldName: { ru: 'Ваше имя', en: 'Your name' },
+  reviewFieldNamePh: { ru: 'Например, Анна', en: 'e.g. Anna' },
+  reviewFieldCountry: { ru: 'Страна', en: 'Country' },
+  reviewFieldCountryPh: { ru: 'Например, Россия', en: 'e.g. Russia' },
+  reviewFieldText: { ru: 'Ваш отзыв', en: 'Your review' },
+  reviewFieldTextPh: {
+    ru: 'Что понравилось? Какая была погода, вода, команда на борту?',
+    en: 'What did you enjoy? How was the weather, the water, the crew on board?',
+  },
+  reviewCharCount: { ru: '{count}/500 символов', en: '{count}/500 characters' },
+  reviewErrorRatingEmpty: {
+    ru: 'Поставьте оценку от 1 до 5 звёзд',
+    en: 'Please rate your trip from 1 to 5 stars',
+  },
+  reviewErrorTextEmpty: {
+    ru: 'Напишите пару слов о прогулке',
+    en: 'Please write a few words about your trip',
+  },
+  reviewErrorTextShort: {
+    ru: 'Добавьте чуть больше деталей (минимум 10 символов)',
+    en: 'Please add a bit more detail (at least 10 characters)',
+  },
+  reviewErrorTextLong: {
+    ru: 'Слишком длинно — уместите отзыв в 500 символов',
+    en: "That's a bit long — please keep it under 500 characters",
+  },
+  reviewErrorNameEmpty: { ru: 'Укажите, как вас зовут', en: 'Please tell us your name' },
+  reviewSuccessTitle: { ru: 'Спасибо за отзыв!', en: 'Thank you for your review!' },
+  reviewSuccessText: {
+    ru: 'Он появится на сайте после проверки — обычно это занимает не больше дня',
+    en: 'It will appear on the site after a quick review — usually within a day',
+  },
+  reviewSubmitBtn: { ru: 'Отправить отзыв', en: 'Submit review' },
+  reviewCancelBtn: { ru: 'Отмена', en: 'Cancel' },
+  reviewCloseBtn: { ru: 'Готово', en: 'Done' },
+  reviewSubmitting: { ru: 'Отправляем…', en: 'Sending…' },
+  reviewErrorAlready: {
+    ru: 'У вас уже есть отзыв — спасибо!',
+    en: "You've already left a review — thank you!",
+  },
+  reviewErrorAuth: {
+    ru: 'Откройте приложение заново и попробуйте ещё раз',
+    en: 'Please reopen the app and try again',
+  },
+  reviewErrorNetwork: {
+    ru: 'Не удалось отправить — попробуйте позже',
+    en: "Couldn't send — please try again later",
+  },
 };
 
 export function detectLang() {
