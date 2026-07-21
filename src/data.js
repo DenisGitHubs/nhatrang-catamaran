@@ -15,7 +15,7 @@ export const APP_LINK = 'https://t.me/NhaTrangCatamaranBot/app';
 export const PRICING = {
   priceVND: 2000000,
   priceLabel: { ru: '2 000 000 ₫', en: '2,000,000 ₫' },
-  durationHours: 4,
+  durationHours: 3,
   maxGuests: 3, // + капитан
 };
 
@@ -57,33 +57,33 @@ export const GALLERY = [
 // tone бейджа: 'hit' (красный), 'gold' (латунь), 'navy' (тёмно-синий).
 export const ROUTES = [
   {
-    id: 'islands',
+    id: 'hon-mun',
     cover: '/photos/beach-bay.webp',
     badge: { ru: 'Хит', en: 'Top pick' },
     tone: 'hit',
-    title: { ru: 'Острова залива', en: 'Bay Islands' },
+    title: { ru: 'Остров Хон-Мун', en: 'Hon Mun Island' },
     desc: {
-      ru: 'Хон-Мун, Хон-Там: прозрачная вода, снорклинг и виды, ради которых сюда едут.',
-      en: 'Hon Mun, Hon Tam: crystal-clear water, snorkeling and the views this bay is famous for.',
+      ru: 'Коралловый риф и прозрачная вода — одно из лучших мест для снорклинга в заливе.',
+      en: 'A coral reef and crystal-clear water — one of the best snorkeling spots in the bay.',
     },
     tags: {
-      ru: ['Снорклинг', 'Купание', 'Фото-стопы'],
-      en: ['Snorkeling', 'Swimming', 'Photo stops'],
+      ru: ['Снорклинг', 'Кораллы', 'Прозрачная вода'],
+      en: ['Snorkeling', 'Coral reef', 'Clear water'],
     },
   },
   {
-    id: 'sunset',
-    cover: '/photos/catamaran.webp',
-    badge: { ru: 'Романтика', en: 'Romantic' },
+    id: 'hon-tam',
+    cover: '/photos/onboard.webp',
+    badge: { ru: 'Пляж', en: 'Beach' },
     tone: 'gold',
-    title: { ru: 'Закатная прогулка', en: 'Sunset Cruise' },
+    title: { ru: 'Остров Хон-Там', en: 'Hon Tam Island' },
     desc: {
-      ru: 'Встречаем закат прямо в море. Тихий ход под парусом, город зажигает огни.',
-      en: 'Meet the sunset out at sea. Quiet sailing while the city lights up.',
+      ru: 'Спокойная стоянка и купание у песчаного пляжа — идеально для отдыха без спешки.',
+      en: 'A calm mooring and a swim by the sandy beach — perfect for an unhurried break.',
     },
     tags: {
-      ru: ['Романтика', 'Закат', 'Огни города'],
-      en: ['Romantic', 'Sunset', 'City lights'],
+      ru: ['Купание', 'Пляж', 'Спокойная стоянка'],
+      en: ['Swimming', 'Beach', 'Calm mooring'],
     },
   },
   {
@@ -91,14 +91,29 @@ export const ROUTES = [
     cover: '/photos/sailing.webp',
     badge: { ru: 'Свобода', en: 'Freedom' },
     tone: 'navy',
-    title: { ru: 'Свободный маршрут', en: 'Your Own Route' },
+    title: { ru: 'Свободный день', en: 'Your Own Day' },
     desc: {
-      ru: 'Лодка ваша на 4 часа — сами решаете, куда идти. Купание, рыбалка или дрейф под парусом.',
-      en: 'The boat is yours for 4 hours — you decide where to go. Swimming, fishing or drifting under sail.',
+      ru: 'Лодка ваша на все 3 часа — сами решаете, чем заняться. Купание, рыбалка или дрейф под парусом.',
+      en: 'The boat is yours for all 3 hours — you decide what to do. Swimming, fishing or just drifting under sail.',
     },
     tags: {
       ru: ['Гибкий план', 'Рыбалка', 'Приватно'],
       en: ['Flexible plan', 'Fishing', 'Private'],
+    },
+  },
+  {
+    id: 'sailing-course',
+    cover: '/photos/beach-captain.webp',
+    badge: { ru: 'Новое', en: 'New' },
+    tone: 'navy',
+    title: { ru: 'Обучение яхтингу', en: 'Sailing Course' },
+    desc: {
+      ru: 'Курс на несколько дней: учим уверенно ходить под парусом и управлять катамараном. Детали и длительность — обсудим при бронировании.',
+      en: 'A multi-day course: we teach you to sail with confidence and handle the catamaran yourself. Details and duration — we will confirm when you book.',
+    },
+    tags: {
+      ru: ['Несколько дней', 'С нуля', 'Свой катамаран'],
+      en: ['Multi-day', 'From scratch', 'Hands-on'],
     },
   },
 ];
@@ -139,8 +154,8 @@ export const REVIEWS = [
     name: 'Анна',
     country: { ru: 'Россия', en: 'Russia' },
     text: {
-      ru: 'Лучшее утро в Нячанге: прозрачная вода, паруса и никакой толпы. Денис дал постоять за штурвалом — восторг!',
-      en: 'Best morning in Nha Trang: clear water, sails and no crowds. Denis let me take the helm — loved it!',
+      ru: 'Лучшее утро в Нячанге: прозрачная вода, паруса и никакой толпы. Денис дал поуправлять катамараном — восторг!',
+      en: 'Best morning in Nha Trang: clear water, sails and no crowds. Denis let me steer the catamaran — loved it!',
     },
   },
   {
@@ -148,8 +163,8 @@ export const REVIEWS = [
     name: 'Дмитрий',
     country: { ru: 'Россия', en: 'Russia' },
     text: {
-      ru: 'Брали всей семьёй закатный маршрут. Дети в полном восторге, капитан внимательный, всё безопасно. Обязательно вернёмся.',
-      en: 'We took the sunset route as a family. The kids loved it, the captain was attentive, everything felt safe. We will be back.',
+      ru: 'Брали всей семьёй маршрут по островам. Дети в полном восторге, капитан внимательный, всё безопасно. Обязательно вернёмся.',
+      en: 'We took the island route as a family. The kids loved it, the captain was attentive, everything felt safe. We will be back.',
     },
   },
   {

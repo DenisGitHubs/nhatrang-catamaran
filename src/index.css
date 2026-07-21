@@ -358,7 +358,7 @@ body {
 }
 .log-body p { margin: 4px 0 0; color: var(--sub); font-size: 13px; line-height: 1.5; }
 
-/* ===== Встаньте за штурвал ===== */
+/* ===== Возьмите управление на себя ===== */
 .helm-card {
   background: var(--navy);
   color: var(--on-navy);

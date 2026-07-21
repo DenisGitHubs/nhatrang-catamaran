@@ -50,7 +50,7 @@ function initTheme() {
   return tg?.colorScheme === 'dark' ? 'dark' : 'light';
 }
 
-// Капитанское фото для блока «Встаньте за штурвал»
+// Капитанское фото для блока «Возьмите управление на себя»
 const HELM_PHOTO = '/photos/beach-captain.webp';
 
 // Мобильный или десктоп: по платформе Telegram, с запасным вариантом по UA.
@@ -288,7 +288,7 @@ export default function App() {
             </div>
           </section>
 
-          {/* Встаньте за штурвал */}
+          {/* Возьмите управление на себя */}
           <section className="section">
             <div className="helm-card">
               <img className="helm-photo" src={HELM_PHOTO} alt={t('helmTitle')} loading="lazy" />
@@ -305,11 +305,23 @@ export default function App() {
             </div>
           </section>
 
-          {/* Что входит */}
+          {/* Что мы даём */}
           <section className="section">
-            {sectionHead(t('included'))}
+            {sectionHead(t('provideTitle'))}
             <div className="included-list">
-              {tr(STRINGS.includedList).map((item) => (
+              {tr(STRINGS.provideList).map((item) => (
+                <div className="included-item" key={item}>
+                  <CheckIcon />{item}
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Как подготовиться */}
+          <section className="section">
+            {sectionHead(t('prepareTitle'))}
+            <div className="included-list">
+              {tr(STRINGS.prepareList).map((item) => (
                 <div className="included-item" key={item}>
                   <CheckIcon />{item}
                 </div>

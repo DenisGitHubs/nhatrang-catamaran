@@ -8,23 +8,23 @@ export const STRINGS = {
     en: 'Just you, the sea and the sails',
   },
   heroSubtitle: {
-    ru: 'Частная прогулка на катамаране. Лодка целиком ваша — без групп и чужих людей. Капитан рядом, маршрут ваш.',
-    en: 'A private catamaran cruise. The whole boat is yours — no groups, no strangers. The captain is with you, the route is yours.',
+    ru: 'Частная прогулка на катамаране. Лодка целиком ваша — без групп и чужих людей. Капитан рядом, программа — на ваш выбор.',
+    en: 'A private catamaran cruise. The whole boat is yours — no groups, no strangers. The captain is right there, and the program is yours to choose.',
   },
   // Факты-плашки под подзаголовком (последняя — акцентная)
   heroFacts: {
-    ru: ['⚓ 4 часа в море', 'до 3 гостей', '100% приватно'],
-    en: ['⚓ 4 hours at sea', 'up to 3 guests', '100% private'],
+    ru: ['⚓ 3 часа в море', 'до 3 гостей', '100% приватно'],
+    en: ['⚓ 3 hours at sea', 'up to 3 guests', '100% private'],
   },
   bookCta: { ru: 'Забронировать', en: 'Book now' },
   perBoat: { ru: 'за лодку целиком', en: 'per whole boat' },
   // Предзаполненный текст сообщения в Telegram при бронировании
   bookPrefill: {
-    ru: 'Здравствуйте! Хочу забронировать катамаран ⛵\nМаршрут: …\nДата: …\nГостей: …',
-    en: 'Hi! I would like to book the catamaran ⛵\nRoute: …\nDate: …\nGuests: …',
+    ru: 'Здравствуйте! Хочу забронировать катамаран ⛵\nПрограмма: …\nДата: …\nГостей: …',
+    en: 'Hi! I would like to book the catamaran ⛵\nProgram: …\nDate: …\nGuests: …',
   },
   // Подпись под ценой
-  priceUnit: { ru: 'за лодку целиком · 4 часа', en: 'per whole boat · 4 hours' },
+  priceUnit: { ru: 'за лодку целиком · 3 часа', en: 'per whole boat · 3 hours' },
   // Якорь цены — сравнение с групповой экскурсией
   priceAnchor: {
     ru: '≈ 670 000 ₫ с человека при 3 гостях',
@@ -37,34 +37,41 @@ export const STRINGS = {
   },
   // Компактная CTA-кнопка в price-card
   checkDates: { ru: 'Проверить свободные даты', en: 'Check available dates' },
-  routesTitle: { ru: 'Маршруты', en: 'Routes' },
+  routesTitle: { ru: 'Программы', en: 'Programs' },
   routesSubtitle: {
-    ru: 'Цена одна — выбирайте, как провести свои 4 часа',
-    en: 'One price — choose how to spend your 4 hours',
+    ru: 'Цена одна — выбирайте, как провести свои 3 часа',
+    en: 'One price — choose how to spend your 3 hours',
   },
   // Судовой журнал (таймлайн)
   logTitle: { ru: 'Судовой журнал', en: "Ship's Log" },
   logSubtitle: {
-    ru: 'Ваши 4 часа в море — по отметкам',
-    en: 'Your 4 hours at sea, marked hour by hour',
+    ru: 'Ваши 3 часа в море — шаг за шагом',
+    en: 'Your 3 hours at sea, step by step',
   },
   // [время, заголовок, текст]
   logSteps: {
     ru: [
-      ['00:00', 'Отдать швартовы', 'Забираем у набережной, короткий инструктаж, спасжилеты — и берём курс в открытое море.'],
-      ['+1 час', 'Острова и снорклинг', 'Идём к островам залива, встаём на стоянку — купание и снорклинг в прозрачной воде.'],
-      ['+2 часа', 'За штурвалом или отдых', 'Хочешь — становись за штурвал: научим держать курс. А хочешь — просто загорай с видом на бухту.'],
-      ['+3 часа', 'Закат и возвращение', 'Встречаем закат прямо в море и не спеша идём назад, к огням города.'],
+      ['15 мин', 'Инструктаж и подготовка', 'Знакомимся с капитаном, проходим инструктаж по безопасности — и надеваем спасательные жилеты.'],
+      ['15 мин', 'По реке к морю', 'Идём на моторе по реке Кай и выходим в открытое море.'],
+      ['45 мин', 'По выбранной программе', 'Поднимаем паруса — начинаем идти по вашей программе.'],
+      ['30 мин', 'Отдых и купание', 'Встаём на стоянку — купание и снорклинг в прозрачной воде.'],
+      ['45 мин', 'Дальше по программе', 'Продолжаем прогулку по выбранной программе.'],
+      ['15 мин', 'Возвращаемся по реке', 'На моторе идём назад по реке Кай.'],
+      ['15 мин', 'Швартовка', 'Причаливаем и сходим на берег.'],
     ],
     en: [
-      ['00:00', 'Cast off', 'We pick you up at the seafront, a quick safety briefing, life jackets — and head out to open sea.'],
-      ['+1 h', 'Islands & snorkeling', 'We sail to the bay islands and drop anchor — swim and snorkel in crystal-clear water.'],
-      ['+2 h', 'Take the helm or relax', "Take the wheel — we'll teach you to hold a course. Or just sunbathe with the bay all around you."],
-      ['+3 h', 'Sunset & back', 'Watch the sunset from the sea, then drift slowly back toward the city lights.'],
+      ['15 min', 'Briefing & Getting Ready', 'We meet the captain, go through a safety briefing — and put on life jackets.'],
+      ['15 min', 'Down the River to the Sea', 'We motor down the Cai River and head out into open water.'],
+      ['45 min', 'Your Chosen Program', 'Sails up — we start the program you picked.'],
+      ['30 min', 'Swim Stop', 'We drop anchor for a swim and snorkel in crystal-clear water.'],
+      ['45 min', 'More of the Program', 'We continue the trip, following your chosen program.'],
+      ['15 min', 'Back Along the River', 'We motor back along the Cai River.'],
+      ['15 min', 'Docking', 'We tie up and step ashore.'],
     ],
   },
-  included: { ru: 'Что входит', en: "What's included" },
-  includedList: {
+  // Что мы даём — что уже входит в прогулку
+  provideTitle: { ru: 'Что мы даём', en: 'What We Provide' },
+  provideList: {
     ru: [
       'Катамаран целиком — без посторонних',
       'Опытный капитан',
@@ -80,12 +87,28 @@ export const STRINGS = {
       'Drinking water',
     ],
   },
-  // Бейдж «уже входит» на карточке за штурвалом
+  // Как подготовиться — что взять гостю с собой
+  prepareTitle: { ru: 'Как подготовиться', en: 'How to Get Ready' },
+  prepareList: {
+    ru: [
+      'Крем от солнца — на лицо, руки и ноги',
+      'Головной убор и солнцезащитные очки',
+      'Купальник и полотенце',
+      'Хорошее настроение',
+    ],
+    en: [
+      'Sunscreen — face, arms and legs',
+      'A hat and sunglasses',
+      'Swimwear and a towel',
+      'Good mood',
+    ],
+  },
+  // Бейдж «уже входит» на карточке управления катамараном
   helmBadge: { ru: 'Уже входит в прогулку', en: 'Already included' },
-  helmTitle: { ru: 'Встаньте за штурвал', en: 'Take the Helm' },
+  helmTitle: { ru: 'Возьмите управление на себя', en: 'Take the Controls' },
   helmText: {
-    ru: 'Капитан научит держать курс и управлять парусами — почувствуете настоящий яхтинг. Опыт не нужен, всё покажем с нуля.',
-    en: "The captain will teach you to hold a course and work the sails — you'll feel real sailing. No experience needed, we start from scratch.",
+    ru: 'Капитан научит вести катамаран под парусом: держать курс, ставить и настраивать паруса. Опыт не нужен — всё покажем с нуля.',
+    en: 'The captain will teach you to handle the catamaran under sail: hold a course, raise and trim the sails. No experience needed — we start from scratch.',
   },
   helmList: {
     ru: [
